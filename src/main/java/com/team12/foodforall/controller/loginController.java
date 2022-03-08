@@ -20,11 +20,11 @@ public class loginController {
     public String _login(){
         //TODO:
 
-        return "redirect:";
+        return "login";
     }
 
     @PostMapping()
-    public String auth(@RequestBody LoginForm loginForm){
+    public String auth(){
         //TODO:
 
         //解析
