@@ -27,12 +27,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
@@ -89,7 +83,7 @@
                         </tags>
                         <auth>
                             <username>gh98</username>
-                            <password>f55f9b3c-0787-4a6c-9800-f472c672132f</password>
+                            <password>e0639a07-c826-47e9-b8a8-c1fb28cb6b4e</password>
                         </auth>
                     </to>
                     <container>
