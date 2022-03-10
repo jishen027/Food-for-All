@@ -12,6 +12,8 @@ public class HelloController {
 
     @RequestMapping("/")
     public String hello(){
+
+        // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
         return "index";
     }
 }
