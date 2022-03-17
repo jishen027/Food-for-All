@@ -16,19 +16,18 @@ import java.util.Optional;
  * @date: 08/03/2022 :17:06
  **/
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 @Validated
-public class loginController {
+public class UserController {
 
-
-    @GetMapping()
+    @GetMapping("/login")
     public String _login() {
         //TODO:
 
-        return "login";
+        return "login_backup";
     }
 
-    @PostMapping()
+    @PostMapping("/login")
     @ResponseBody // 一般返回json
     public ResponseEntity<Response<String>> auth(@RequestBody LoginForm loginForm) {
         val form = Optional.ofNullable(loginForm)
