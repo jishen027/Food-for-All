@@ -2,6 +2,7 @@ package com.team12.foodforall.repository;
 
 import com.team12.foodforall.domain.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author: Heng Gao
@@ -9,5 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  **/
 
 //CrudRepository is provided by framework, go into it to see default database operations.
+@Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 }

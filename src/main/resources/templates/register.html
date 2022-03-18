@@ -6,17 +6,36 @@
 </head>
 <body>
 
+
+<!--with the help of thymeleaf, this form will be convert to an java obejct before sending request-->
+<!--th:object is the object name-->
+<!--th:field is the variable name-->
 <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+    <!--  fileds provide a hasErrors() method to check if there is any mistake on field of 'name  -->
+
+    <!-- error styling method 1： conditionally setting class   -->
+<!--    <span th:class="${#fields.hasErrors('name')} ? error" th:if="${#fields.hasErrors('name')}"-->
+<!--          th:errors="*{name}"></span>-->
+
+    <!-- error styling method 2： using th:error class    -->
+    <span th:errorclass="error" th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span>
+
     <label for="email">Email</label>
     <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <span th:errorclass="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
     <label for="password">Password</label>
     <input type="password" th:field="*{password}" id="password" placeholder="Password">
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    <span th:errorclass="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
     <input type="submit" value="Add User">
 </form>
 </body>
+<style>
+    .error {
+        color: red;
+    }
+</style>
 </html>

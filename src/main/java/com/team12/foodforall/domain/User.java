@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * @author: Heng Gao
@@ -30,6 +27,8 @@ public class User {
     private String email;
 
     @Size(min = 8, message = "password should have at least 8 characters")
+    @Size(max = 16, message = "password should have at most 16 characters")
+    @NotEmpty(message = "Email is mandatory")
     private String password;
 
 }

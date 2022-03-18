@@ -16,6 +16,13 @@ import java.util.Map;
 /**
  * @author: Heng Gao
  * @date: 17/03/2022 :23:26
+ *
+ * This Handler can handle exception in customised way.
+ *
+ *  It has no effect on UserController
+ *
+ *  It has effect on UserControllerApi which is a rest controller that return response in json form.
+ *
  **/
 @ControllerAdvice
 public class ValidationHandler extends ResponseEntityExceptionHandler {
