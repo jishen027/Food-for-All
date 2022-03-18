@@ -20,6 +20,7 @@ public class User {
     private Long id;
 
     @Size(min = 2, message = "user name should have at least 2 characters")
+    @NotEmpty(message = "name is mandatory")
     private String name;
 
     @Email

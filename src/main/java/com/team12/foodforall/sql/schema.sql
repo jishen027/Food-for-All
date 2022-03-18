@@ -1,7 +1,8 @@
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
-                         id   INTEGER      NOT NULL AUTO_INCREMENT,
-                         name VARCHAR(128) NOT NULL, PRIMARY KEY (id),
-                         email VARCHAR(128) NOT NULL,
-                         password VARCHAR(128) NOT NULL
-                  );
+CREATE TABLE users
+(
+    id       BIGINT AUTO_INCREMENT NOT NULL,
+    name     VARCHAR(255),
+    email    VARCHAR(255),
+    password VARCHAR(255),
+    CONSTRAINT pk_users PRIMARY KEY (id)
+);

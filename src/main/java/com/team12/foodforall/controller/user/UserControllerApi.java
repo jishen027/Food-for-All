@@ -26,7 +26,7 @@ public class UserControllerApi {
 
     @PostMapping("users")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user){
-        User savedUser = userService.addUser(user);
+        User savedUser = userService.registerUser(user);
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 

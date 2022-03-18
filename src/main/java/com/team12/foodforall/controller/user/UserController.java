@@ -1,7 +1,7 @@
 package com.team12.foodforall.controller.user;
 
 import com.team12.foodforall.domain.User;
-import com.team12.foodforall.repository.UserRepository;
+import com.team12.foodforall.exception.UserAlreadyExistException;
 import com.team12.foodforall.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +26,14 @@ public class UserController {
         return "login";
     }
 
+
     @GetMapping("/register_abi")
-    public String showRegisterForm_abi(User user) {
+    public String showRegisterForm_abi(@Valid User user) {
         return "register_abi";
     }
 
     @GetMapping("/register")
-    public String showRegisterForm(User user) {
+    public String showRegisterForm(@Valid User user) {
         return "register";
     }
 
@@ -59,7 +60,7 @@ public class UserController {
         }
 
         // business logic
-        User savedUser = userService.addUser(user);
+        User savedUser = userService.registerUser(user);
 
         // if success
         return "redirect:/users";
@@ -89,7 +90,7 @@ public class UserController {
             return "update-user";
         }
 
-        userService.addUser(user);
+        userService.registerUser(user);
         return "redirect:/users";
     }
 

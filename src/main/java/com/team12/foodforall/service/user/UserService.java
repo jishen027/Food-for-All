@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-    User addUser(User user);
+    User registerUser(User user);
 
     Optional<User> findUserById(Long id);
 

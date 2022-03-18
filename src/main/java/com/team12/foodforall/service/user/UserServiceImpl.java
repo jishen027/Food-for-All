@@ -15,7 +15,6 @@ import java.util.Optional;
  **/
 @Service
 public class UserServiceImpl implements UserService{
-
     @Autowired
     private UserRepository userRepository;
 
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User addUser(@Valid User user){
+    public User registerUser(@Valid User user){
         return userRepository.save(user);
     }
 
@@ -38,5 +37,4 @@ public class UserServiceImpl implements UserService{
     public ArrayList<User> findAllUsers() {
         return (ArrayList<User>) userRepository.findAll();
     }
-
 }
