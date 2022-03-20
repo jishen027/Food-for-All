@@ -3,54 +3,54 @@
 <head>
     <!-- insert head from thymeleaf header fragment -->
     <div th:insert="~{fragments/header :: head}"></div>
+
 </head>
 
 <body>
-
     <div id="app">
         <!-- navbar-->
         <nav class="navbar navbar-expand-md navbar-light fix-top border-bottom">
             <div class="container-xxl">
-              <a href="/" class="navbar-brand">
-                <span class="fw-bold text-success">
-                  <i class="bi bi-balloon-heart-fill"></i>
-                  {{title}}
-                </span>
-              </a>
-              <!-- toggle button for mobile nav -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-      
-              <!-- navbar links -->
-              <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/projects" class="nav-link">Projects</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#reviews" class="nav-link">About us</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                  </li>
-                  <!-- <li class="nav-item">
+                <a href="/" class="navbar-brand">
+                    <span class="fw-bold text-success">
+                        <i class="bi bi-balloon-heart-fill"></i>
+                        {{title}}
+                    </span>
+                </a>
+                <!-- toggle button for mobile nav -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- navbar links -->
+                <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/projects" class="nav-link">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#reviews" class="nav-link">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">Contact</a>
+                        </li>
+                        <!-- <li class="nav-item">
                     <a href="#pricing" class="nav-link">Pricing</a>
                 </li> -->
-                  <li v-if="loginState" class="nav-item ms-2 d-none d-md-inline">
-                    <a href="#pricing" class="btn btn-success">DashBoard</a>
-                  </li>
-                  <li v-else class="nav-item ms-2 d-none d-md-inline">
-                    <a href="/login" class="btn btn-warning">Login</a>
-                  </li>
-                </ul>
-              </div>
+                        <li v-if="loginState" class="nav-item ms-2 d-none d-md-inline">
+                            <a href="#pricing" class="btn btn-success">DashBoard</a>
+                        </li>
+                        <li v-else class="nav-item ms-2 d-none d-md-inline">
+                            <a href="/login" class="btn btn-warning">Login</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </nav>
+        </nav>
 
         <!-- main image and intro text -->
         <section id="intro">
@@ -98,7 +98,7 @@
                                         aria-valuemin="0" aria-valuemax="100">25%</div>
                                 </div>
                                 <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
-                                <a href="#" class="btn btn-primary">Donate Now</a>
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                                         aria-valuemin="0" aria-valuemax="100">25%</div>
                                 </div>
                                 <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
-                                <a href="#" class="btn btn-primary">Donate Now</a>
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                                         aria-valuemin="0" aria-valuemax="100">25%</div>
                                 </div>
                                 <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
-                                <a href="#" class="btn btn-primary">Donate Now</a>
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
                             </div>
                         </div>
                     </div>
@@ -147,6 +147,11 @@
         <!-- insert footer from thymeleaf fragments -->
         <div th:insert="~{fragments/footer :: footer}"></div>
     </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var session = /*[[${session}]]*/ 'default';
+        /*]]>*/
+    </script>
     <script src="/javascript/index.js"></script>
 </body>
 
