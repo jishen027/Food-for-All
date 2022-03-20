@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-17 17:44:29 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-17 17:59:07
+ * @Last Modified time: 2022-03-17 18:22:21
  */
 
 
@@ -14,23 +14,28 @@ var app = new Vue({
     }
   },
   methods: {
-    loginAction() {
+    async loginAction() {
+      // const username = this.username
       const username = "gh"
+      // const pwd = this.password
       const pwd = "1233"
-
-      const response = fetch("/login", {
+      const response = await fetch("/login", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Content-Type': 'application/json'
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({ "username": username, "password": pwd }) // body data type must match "Content-Type" header
-      }).then(res=>{
+      }).then(res => {
         console.log(res)
-      }).catch(err=>{
+        if(res.status === 200){
+          window.location.href="/"
+        }
+      }).catch(err => {
         console.log(err)
       })
     }
+
   },
 
 })
