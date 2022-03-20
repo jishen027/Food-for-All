@@ -1,4 +1,4 @@
-package com.team12.foodforall.controller;
+package com.team12.foodforall.controller.project;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +21,5 @@ public class ProjectController {
         // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
         return "index";
     }
-
-    @RequestMapping("/projects")
-    public String projectsView(){
-
-        // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
-        return "projects";
-    }
-
 
 }

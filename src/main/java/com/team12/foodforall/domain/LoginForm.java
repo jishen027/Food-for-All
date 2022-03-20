@@ -1,13 +1,29 @@
 package com.team12.foodforall.domain;
 
-import lombok.Data;
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 /**
  * @author: Heng Gao
- * @date: 08/03/2022 :17:35
+ * @date: 19/03/2022 20:52
  **/
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class LoginForm {
-    String username;
-    String password;
+
+
+    @Email
+    @NotEmpty(message = "Email is mandatory")
+    private String email;
+
+    @Size(min = 8, message = "password should have at least 8 characters")
+    @Size(max = 16, message = "password should have at most 16 characters")
+    @NotEmpty(message = "Password is mandatory")
+    private String password;
 }
