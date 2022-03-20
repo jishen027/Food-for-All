@@ -1,5 +1,7 @@
 package com.team12.foodforall.service.user;
 
+import com.team12.foodforall.domain.LoginForm;
+import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,15 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-    User registerUser(User user);
+    User registerUser(RegisterForm user);
 
     Optional<User> findUserById(Long id);
 
     List<User> findAllUsers();
 
     void deleteUserById(long id);
+
+    User findUserByEmail(String email);
+
+    User login(LoginForm loginForm);
 }

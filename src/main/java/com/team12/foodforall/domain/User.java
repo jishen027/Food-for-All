@@ -1,35 +1,54 @@
 package com.team12.foodforall.domain;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import java.util.Objects;
 
 /**
  * @author: Heng Gao
  * @date: 17/03/2022 :18:50
  **/
-@Data
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, message = "user name should have at least 2 characters")
-    @NotEmpty(message = "name is mandatory")
-    private String name;
+    @Column(name = "first_name", nullable = false, length = 20)
+    private String firstName;
 
-    @Email
-    @NotEmpty(message = "Email is mandatory")
+    @Column(name = "last_name", nullable = false, length = 20)
+    private String lastName;
+
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @Size(min = 8, message = "password should have at least 8 characters")
-    @Size(max = 16, message = "password should have at most 16 characters")
-    @NotEmpty(message = "Email is mandatory")
+    @Column(nullable = false, length = 64)
     private String password;
+
+    @Column(nullable = false, length = 64)
+    private String confirmedPassword;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
 }

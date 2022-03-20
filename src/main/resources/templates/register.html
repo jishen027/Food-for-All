@@ -1,41 +1,77 @@
-<!DOCTYPE html>
+
+
 <html lang="en">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    -->
+    <title>Register Food For All</title>
 </head>
+
+
 <body>
 
+<div id="register">
+    <h3 class="text-center text-198754 pt-5" style="color:#198754;" >FOOD FOR ALL</h3 >
+    <div class="container">
+        <div id="register-row" class="row justify-content-center align-items-center">
+            <div id="register-column" class="col-md-6">
+                <div id="register-box" class="col-md-12">
 
-<!--with the help of thymeleaf, this form will be convert to an java obejct before sending request-->
-<!--th:object is the object name-->
-<!--th:field is the variable name-->
-<form action="#" th:action="@{/register}" th:object="${user}" method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
 
-    <!--  fileds provide a hasErrors() method to check if there is any mistake on field of 'name  -->
+                        <h2 class="text-center text-198754 pt-1" style="color:#198754;" >Register Page </h2>
 
-    <!-- error styling method 1： conditionally setting class   -->
-<!--    <span th:class="${#fields.hasErrors('name')} ? error" th:if="${#fields.hasErrors('name')}"-->
-<!--          th:errors="*{name}"></span>-->
+                        <form id="register-form" class="form" th:action="@{/register}" th:object="${registerForm}" method="post">
+                        <div class="form-group">
+                            <label for="lastname" style="color:#198754;" >Last Name:</label><br>
+                            <input type="text" name="lastname" id="lastname" class="form-control" th:field="*{lastName}" placeholder="Last Name">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" style="color:#198754;" >First Name:</label><br>
+                            <input type="text" name="firstname" id="firstname" class="form-control" th:field="*{firstName}" placeholder="First Name">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" style="color:#198754;" >Email:</label><br>
+                            <input type="text" name="email" id="email" class="form-control" th:field="*{email}" placeholder="Email">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" style="color:#198754;">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control" th:field="*{password}" placeholder="Password">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" style="color:#198754;">Confirm Password:</label><br>
+                            <input type="password" name="password" id="2password" class="form-control" th:field="*{confirmedPassword}" placeholder="Confirmed Password">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('confirmedPassword')}" th:errors="*{confirmedPassword}"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-md" style="color:#198754;" value="Register">
+                        </div>
+                        <div id="link-link" class="text-right">
+                            <a th:href="@{~/login}" style="color:#198754;">Already have account click here</a>
+                        </div>
+                        <br>
+                        <div id="link-link1" class="text-right">
+                            <a th:href="@{~/}" style="color:#198754;">Don't want to Register? Click here to Continue as Guest</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- error styling method 2： using th:error class    -->
-    <span th:errorclass="error" th:if="${#fields.hasErrors('name')}"
-          th:errors="*{name}"></span>
-
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:errorclass="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <label for="password">Password</label>
-    <input type="password" th:field="*{password}" id="password" placeholder="Password">
-    <span th:errorclass="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-    <input type="submit" value="Add User">
-</form>
 </body>
-<style>
-    .error {
-        color: red;
-    }
-</style>
 </html>

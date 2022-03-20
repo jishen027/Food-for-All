@@ -1,6 +1,7 @@
 package com.team12.foodforall.controller.user;
 
 import com.team12.foodforall.domain.LoginForm;
+import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.Response;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.service.user.UserService;
@@ -25,23 +26,26 @@ public class UserControllerApi {
     private UserService userService;
 
     @PostMapping("users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
-        User savedUser = userService.registerUser(user);
+    public ResponseEntity<User> createUser(@Valid @RequestBody RegisterForm registerForm){
+        User savedUser = userService.registerUser(registerForm);
+
+        //TODO:throw exception
+
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     @ResponseBody // 一般返回json
-    public ResponseEntity<Response<String>> auth(@RequestBody LoginForm loginForm) {
-        val form = Optional.ofNullable(loginForm)
+    public ResponseEntity<Response<String>> auth(@RequestBody RegisterForm registerForm) {
+        val form = Optional.ofNullable(registerForm)
                 .orElseThrow(() -> new RuntimeException("body cannot be null"));
 
-        if ("gh".equals(form.getUsername()) && "1233".equals(form.getPassword())) {
-            return ResponseEntity.ok(Response.<String>builder().code(HttpStatus.OK.value()).data("succ").build());
+        if ("gh".equals(form.getEmail()) && "1233".equals(form.getPassword())) {
+            return ResponseEntity.ok(Response.<String>builder().status(HttpStatus.OK.value()).data("succ").build());
         }
 
         // TODO：改成统一处理
 //        return ResponseEntity.ok("200"); //spring 会检测并设置成text
-        return ResponseEntity.status(401).body(Response.<String>builder().code(HttpStatus.UNAUTHORIZED.value()).data("invalid password").build());
+        return ResponseEntity.status(401).body(Response.<String>builder().status(HttpStatus.UNAUTHORIZED.value()).data("invalid password").build());
     }
 }

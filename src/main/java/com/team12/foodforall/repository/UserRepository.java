@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 //CrudRepository is provided by framework, go into it to see default database operations.
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
+    User findByEmail(String email);
 }
