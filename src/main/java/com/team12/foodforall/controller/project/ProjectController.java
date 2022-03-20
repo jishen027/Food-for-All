@@ -22,4 +22,18 @@ public class ProjectController {
         return "index";
     }
 
+    @RequestMapping("/projects")
+    public String projects(){
+
+        return "projects";
+    }
+
+    @RequestMapping("/detail")
+    public String projectDetail(){
+
+        return "project_detail";
+    }
+
+
+
 }
