@@ -12,6 +12,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class Response<T> {
-    private int code;
+    private int status;
     private T data;
 }
