@@ -3,13 +3,13 @@ package com.team12.foodforall.controller.user;
 import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
-import com.team12.foodforall.repository.UserRepository;
 import com.team12.foodforall.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
@@ -50,6 +50,7 @@ public class UserController {
         return "register";
     }
 
+
     /**
      * Returns the target page in string form based on the registration result.
      * <p>
@@ -81,5 +82,4 @@ public class UserController {
         // if success
         return "redirect:/login";
     }
-
 }
