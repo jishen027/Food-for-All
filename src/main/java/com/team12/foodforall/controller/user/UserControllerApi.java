@@ -1,6 +1,5 @@
 package com.team12.foodforall.controller.user;
 
-import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.Response;
 import com.team12.foodforall.domain.User;
@@ -40,12 +39,13 @@ public class UserControllerApi {
         val form = Optional.ofNullable(registerForm)
                 .orElseThrow(() -> new RuntimeException("body cannot be null"));
 
+
         if ("gh".equals(form.getEmail()) && "1233".equals(form.getPassword())) {
             return ResponseEntity.ok(Response.<String>builder().status(HttpStatus.OK.value()).data("succ").build());
         }
 
         // TODO：改成统一处理
 //        return ResponseEntity.ok("200"); //spring 会检测并设置成text
-        return ResponseEntity.status(401).body(Response.<String>builder().status(HttpStatus.UNAUTHORIZED.value()).data("invalid password").build());
+        return ResponseEntity.status(401).body(Response.<String>builder().status(HttpStatus.BAD_REQUEST.value()).data("invalid password").build());
     }
 }

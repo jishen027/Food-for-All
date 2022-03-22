@@ -38,6 +38,7 @@ public class User {
     @Column(nullable = false, length = 64)
     private String confirmedPassword;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
