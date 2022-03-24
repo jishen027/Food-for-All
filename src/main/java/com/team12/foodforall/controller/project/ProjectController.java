@@ -42,7 +42,16 @@ public class ProjectController {
         return "index";
     }
 
+    // router for return the projects views
+    @RequestMapping("/projects")
+    public String projects(){
+        return "projects";
+    }
 
+    @RequestMapping("/dashboard-graphs")
+    public String dashboardGraphs(){
+        return "dashboard-graphs";
+    }
 
 
 
