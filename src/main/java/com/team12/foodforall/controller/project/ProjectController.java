@@ -54,5 +54,14 @@ public class ProjectController {
     }
 
 
+    @RequestMapping("/dashboard-projects")
+    public String dashboardProjects(){
+        return "dashboard-projects";
+    }
+
+    @RequestMapping("/detail")
+    public String projectDetail(){
+        return "project_detail";
+    }
 
 }
