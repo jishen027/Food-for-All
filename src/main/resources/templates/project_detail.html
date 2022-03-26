@@ -8,56 +8,17 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light fix-top border-bottom">
-      <div class="container-xxl">
-        <a href="/" class="navbar-brand">
-          <span class="fw-bold text-success">
-            <i class="bi bi-balloon-heart-fill"></i>
-            {{title}}
-          </span>
-        </a>
-        <!-- toggle button for mobile nav -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-          aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <!-- navbar links -->
-        <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="/" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="/projects" class="nav-link">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a href="#reviews" class="nav-link">About us</a>
-            </li>
-            <li class="nav-item">
-              <a href="#contact" class="nav-link">Contact</a>
-            </li>
-            <!-- <li class="nav-item">
-            <a href="#pricing" class="nav-link">Pricing</a>
-        </li> -->
-            <li v-if="loginState" class="nav-item ms-2 d-none d-md-inline">
-              <a href="#pricing" class="btn btn-success">DashBoard</a>
-            </li>
-            <li v-else class="nav-item ms-2 d-none d-md-inline">
-              <a href="/login" class="btn btn-warning">Login</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    <!-- insert navbar from thymeleaf nav fragment -->
+    <div th:insert="~{fragments/navbar :: nav}"></div>
+    
     <div class="container">
       <div class="text-center">
         <h2 class="my-2 py-5 text-success">{{project.title}}</h2>
       </div>
-      <div class="row">
+      <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
-          <img src="/Foodforall03.jpeg" class="img-fluid" alt="...">
+          <img src="/banner.jpg" class="img-fluid" alt="...">
         </div>
         <div class="col">
           <div class="card">
@@ -80,7 +41,7 @@
                     Charity: {{project.charity}}
                   </li>
                   <li class="list-group-item">
-                    <p >price: <small class="display-6 text-primary fw-bold">${{project.price}}/meal</small></p>
+                    <p>price: <small class="display-6 text-primary fw-bold">${{project.price}}/meal</small></p>
                   </li>
                 </ul>
               </div>
