@@ -1,0 +1,86 @@
+<html lang="en">
+
+<head>
+    <!-- insert head from thymeleaf header fragment -->
+    <div th:insert="~{fragments/header :: head}"></div>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- insert navbar from thymeleaf nav fragment -->
+        <div th:insert="~{fragments/navbar :: nav}"></div>
+
+        <section id="projects">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
+                    <div class="col">
+                        <div class="card m-3 h-100">
+                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                                    vitae
+                                    ...</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card m-3 h-100">
+                            <img src="/FoodforAll03.jpeg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                                    vitae
+                                    ...</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card m-3 h-100">
+                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                                    vitae
+                                    ...</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card m-3 h-100">
+                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                                    vitae
+                                    ...</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- insert footer from thymeleaf fragments -->
+        <div th:insert="~{fragments/footer :: footer}"></div>
+    </div>
+    <script src="/javascript/projects.js"></script>
+</body>
+
+</html>

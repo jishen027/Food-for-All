@@ -66,40 +66,48 @@
 <div id="register">
     <h3 class="text-center text-198754 pt-5" style="color:#198754;" >FOOD FOR ALL</h3 >
     <div class="container">
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
-                <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" action="" method="post">
+        <div id="register-row" class="row justify-content-center align-items-center">
+            <div id="register-column" class="col-md-6">
+                <div id="register-box" class="col-md-12">
+
+
                         <h2 class="text-center text-198754 pt-1" style="color:#198754;" >Register Page </h2>
-                        <div class="form-group">
-                            <label for="firstname" style="color:#198754;" >First Name:</label><br>
-                            <input type="text" name="firstname" id="firstname" class="form-control" required aria-required="true">
-                        </div>
+
+                        <form id="register-form" class="form" th:action="@{/register}" th:object="${registerForm}" method="post">
                         <div class="form-group">
                             <label for="lastname" style="color:#198754;" >Last Name:</label><br>
-                            <input type="text" name="lastname" id="lastname" class="form-control" required aria-required="true">
+                            <input type="text" name="lastname" id="lastname" class="form-control" th:field="*{lastName}" placeholder="Last Name">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                         </div>
                         <div class="form-group">
-                            <label for="lastname" style="color:#198754;" >Email:</label><br>
-                            <input type="text" name="lastname" id="email" class="form-control" required aria-required="true">
+                            <label for="firstname" style="color:#198754;" >First Name:</label><br>
+                            <input type="text" name="firstname" id="firstname" class="form-control" th:field="*{firstName}" placeholder="First Name">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" style="color:#198754;" >Email:</label><br>
+                            <input type="text" name="email" id="email" class="form-control" th:field="*{email}" placeholder="Email">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                         </div>
                         <div class="form-group">
                             <label for="password" style="color:#198754;">Password:</label><br>
-                            <input type="password" name="password" id="password" class="form-control" required aria-required="true">
+                            <input type="password" name="password" id="password" class="form-control" th:field="*{password}" placeholder="Password">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                         </div>
                         <div class="form-group">
                             <label for="password" style="color:#198754;">Confirm Password:</label><br>
-                            <input type="password" name="password" id="2password" class="form-control" required aria-required="true">
+                            <input type="password" name="password" id="2password" class="form-control" th:field="*{confirmedPassword}" placeholder="Confirmed Password">
+                            <span th:errorclass="error" th:if="${#fields.hasErrors('confirmedPassword')}" th:errors="*{confirmedPassword}"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-md" style="color:#198754;" value="Register">
                         </div>
                         <div id="link-link" class="text-right">
-                            <a href="login" style="color:#198754;">Already have account click here</a>
+                            <a th:href="@{~/login}" style="color:#198754;">Already have account click here</a>
                         </div>
                         <br>
                         <div id="link-link1" class="text-right">
-                            <a href="/" style="color:#198754;">Don't want to Register? Click here to Continue as Guest</a>
+                            <a th:href="@{~/}" style="color:#198754;">Don't want to Register? Click here to Continue as Guest</a>
                         </div>
                     </form>
                 </div>
