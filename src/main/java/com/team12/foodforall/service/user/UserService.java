@@ -3,11 +3,8 @@ package com.team12.foodforall.service.user;
 import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
-import com.team12.foodforall.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

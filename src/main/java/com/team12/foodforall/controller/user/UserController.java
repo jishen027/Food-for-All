@@ -1,6 +1,5 @@
 package com.team12.foodforall.controller.user;
 
-import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.service.user.UserService;
@@ -22,28 +21,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("/login")
-    public String showLoginPage(LoginForm loginForm) {
-        return "login";
-    }
-
-
-    @PostMapping("/login")
-    public String loginByEmail(@Valid LoginForm loginForm, BindingResult result, Model model) {
-        System.out.println(loginForm);
-//        TODO: to implement
-        User user = userService.login(loginForm);
-
-//        TODO: error --> login failed, error detail thrown in the userService
-        if(user == null){
-            // login failed
-            return "login";
-        }
-
-        // TODO: success-> redirct to the correct page
-        return "index";
-    }
 
     @GetMapping("/register")
     public String showRegisterForm(RegisterForm registerForm) {
