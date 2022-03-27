@@ -1,6 +1,5 @@
 package com.team12.foodforall.service.user;
 
-import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
 import org.springframework.stereotype.Service;
@@ -25,5 +24,4 @@ public interface UserService {
 
     User findUserByEmail(String email);
 
-    User login(LoginForm loginForm);
 }
