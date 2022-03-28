@@ -14,59 +14,13 @@
         <section id="projects">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4 mt-5">
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
+                    <div class="col" v-for="project in projects">
                         <div class="card m-3 h-100">
-                            <img src="/FoodforAll03.jpeg" alt="" class="card-img-top">
+                            <img :src="project.img" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
+                                <h5 class="card-title">{{project.title}}</h5>
+                                <p class="card-text">{{project.content.slice(0,150)}}...</p>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>

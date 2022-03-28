@@ -35,8 +35,8 @@
                   <li class="list-group-item">
                     Progress:
                     <div class="progress mt-1">
-                      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100">25%</div>
+                      <div class="progress-bar" role="progressbar" v-bind:style="{width: project.progress + '%'}" v-bind:aria-valuenow="project.progress"
+                        aria-valuemin="0" aria-valuemax="100">{{project.progress}}%</div>
                     </div>
                   </li>
                   <li class="list-group-item">
