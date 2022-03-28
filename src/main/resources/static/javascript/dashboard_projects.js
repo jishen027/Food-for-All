@@ -2,14 +2,14 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-27 15:58:53 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-28 17:14:15
+ * @Last Modified time: 2022-03-28 23:50:36
  */
 var app = new Vue({
   el: '#app',
   data() {
     return {
       title: 'Food For All',
-      loginState: false,
+      loginState: true,
       tagActives: {
         projects: true,
         graphs: false,

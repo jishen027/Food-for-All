@@ -2,15 +2,14 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:28:28 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-26 19:49:04
+ * @Last Modified time: 2022-03-28 23:50:46
  */
-
 var app = new Vue({
   el: '#app',
   data() {
     return {
       title: 'Food For All',
-      loginState: false,
+      loginState: true,
       project: {
         id: 1,
         title: 'Donate food for UK people',
