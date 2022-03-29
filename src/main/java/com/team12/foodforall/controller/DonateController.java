@@ -63,7 +63,7 @@ public class DonateController {
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
                 /**create success message**/
-                return "success";
+                return "index";
             }
         } catch (PayPalRESTException e) {
             System.out.println(e.getMessage());
