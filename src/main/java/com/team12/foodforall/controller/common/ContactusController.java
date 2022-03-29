@@ -1,25 +1,20 @@
-package com.team12.foodforall.controller;
+package com.team12.foodforall.controller.common;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-/**
- * @author: Abhishek M Nagesh
- * @date: 26/03/2022 :12:43
- **/
-
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/Contact Us")
 @Validated
-public class indexController {
+public class ContactusController {
 
     @GetMapping()
-    public String _index() {
+    public String _contactus() {
         //TODO:
 
-        return "index";
+        return "Contact Us";
     }
 }
