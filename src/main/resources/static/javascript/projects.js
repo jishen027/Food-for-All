@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:32:20 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-29 00:53:59
+ * @Last Modified time: 2022-03-29 16:14:43
  */
 var app = new Vue({
   el: '#app',
@@ -21,7 +21,8 @@ var app = new Vue({
           positionName: 'UK',
           positionLatLng: '',
           charity: 'UK-Charity',
-          price: 8.99
+          price: '8.99$',
+          userId: 1
         },
         {
           id: 2,
