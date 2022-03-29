@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -18,7 +17,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name="users")
@@ -40,6 +38,9 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
+    @Column(name = "charity_name", nullable = false, length = 20)
+    private String charityName;
+
     @OneToMany(mappedBy = "user")
     @Column(name = "projects")
     @JsonIgnore
@@ -60,4 +61,13 @@ public class User {
         return getClass().hashCode();
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "firstName = " + firstName + ", " +
+                "lastName = " + lastName + ", " +
+                "email = " + email + ", " +
+                "password = " + password + ")";
+    }
 }

@@ -20,13 +20,17 @@ public class Project {
     String title;
 
     @Column(name = "content")
+    @NotNull(message = "content is necessary")
     String content;
 
     @Column(name = "img")
     String img;  // '/Foodforall.jpeg',
 
+    int achievedmeals;
 
-    String progress; //60,
+    int targetmeals;
+
+    float progress; //60,
 
     String positionName; // 'UK',
 
@@ -34,15 +38,12 @@ public class Project {
 
     Float Lng; // <12.22, 23.55>
 
-    String charity; // 'UK-Charity',
-
     String price; //'8.99',
 
     String currency; //"$"
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @NotNull(message = "The project has no userId")
     User user;
 
 }

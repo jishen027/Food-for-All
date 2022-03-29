@@ -57,6 +57,7 @@ public class ProjectRepoTest {
             owner.setLastName("westwood");
             owner.setEmail("fuck@owner.com");// this needs to be unique
             owner.setPassword("asdasdasd");
+            owner.setCharityName("UK abc Charity");
         } else{ // found , then use it
             owner = result;
         }
