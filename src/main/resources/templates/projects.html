@@ -33,6 +33,12 @@
         <!-- insert footer from thymeleaf fragments -->
         <div th:insert="~{fragments/footer :: footer}"></div>
     </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var projects = /*[[${projects}]]*/'default';
+        console.log((projects))
+        /*]]>*/
+    </script>
     <script src="/javascript/projects.js"></script>
 </body>
 
