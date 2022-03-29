@@ -50,8 +50,6 @@ public class UserServiceImpl implements UserService{
         user.setPassword(registerForm.getPassword());
         user.setPassword(registerForm.getPassword());
 
-        user.setConfirmedPassword(registerForm.getConfirmedPassword());
-
         return userRepository.save(user);
     }
 

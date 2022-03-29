@@ -1,5 +1,6 @@
 package com.team12.foodforall;
 
+import com.team12.foodforall.domain.Project;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
+
+import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -31,9 +34,12 @@ public class UserRepositoryTests {
         User user = new User();
         user.setEmail("ridsfassssf@gmail.com");
         user.setPassword("ravi2020");
-        user.setConfirmedPassword("ravi2020");
         user.setFirstName("Ravi");
         user.setLastName("Kumar");
+
+        final Project project = new Project();
+        Set<Project> projects = Set.of(project);
+        user.setProjects(projects);
 
         User savedUser = repo.save(user);
 

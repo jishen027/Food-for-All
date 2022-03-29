@@ -1,10 +1,15 @@
 package com.team12.foodforall.domain;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author: Heng Gao
@@ -35,8 +40,11 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(nullable = false, length = 64)
-    private String confirmedPassword;
+    @OneToMany(mappedBy = "user")
+    @Column(name = "projects")
+    @JsonIgnore
+    private Set<Project> projects;
+
 
 
     @Override

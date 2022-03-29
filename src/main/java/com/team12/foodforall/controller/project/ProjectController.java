@@ -1,8 +1,11 @@
 package com.team12.foodforall.controller.project;
 
 import com.team12.foodforall.domain.Project;
+import com.team12.foodforall.repository.ProjectRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,9 @@ import java.util.ArrayList;
 @Controller
 public class ProjectController {
 
+    @Autowired
+    ProjectRepository projectRepo;
+
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
 
@@ -22,7 +28,6 @@ public class ProjectController {
         session.setAttribute("userName","gh");
         session.setAttribute("userId",101);
         session.setAttribute("userRole","admin");
-
 
         Project p1 = new Project();
         p1.setId(101L);
@@ -43,8 +48,12 @@ public class ProjectController {
     }
 
     // router for return the projects views
-    @RequestMapping("/projects")
-    public String projects(){
+    @GetMapping("/projects")
+    public String projects(Model model){
+        // retrieve all data from
+        ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
+
+        model.addAttribute("projects", projects);
         return "projects";
     }
 

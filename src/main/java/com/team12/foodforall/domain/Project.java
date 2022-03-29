@@ -3,26 +3,26 @@ package com.team12.foodforall.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author: Heng Gao
  * @date: 22/03/2022 11:59
  **/
 @Data
-@Entity
+@Entity(name="projects")
 public class Project {
     @Id
-    @Column(name = "project_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     String title;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content")
     String content;
 
-    @Column(name = "img", nullable = false)
+    @Column(name = "img")
     String img;  // '/Foodforall.jpeg',
 
 
@@ -40,6 +40,9 @@ public class Project {
 
     String currency; //"$"
 
-    Long userId; // L
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @NotNull(message = "The project has no userId")
+    User user;
 
 }
