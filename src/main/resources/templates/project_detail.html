@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+  <!-- insert head from thymeleaf header fragment -->
+  <div th:insert="~{fragments/header :: head}"></div>
+  <script src="/javascript/project_detail_map.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- insert navbar from thymeleaf nav fragment -->
+    <div th:insert="~{fragments/navbar :: nav}"></div>
+    
+    <div class="container">
+      <div class="text-center mt-5">
+        <h2 class="my-2 py-5 text-success">{{project.title}}</h2>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2">
+        <div class="col">
+          <div class="h-100">
+            <img src="/banner.jpg" class="img-fluid" alt="...">
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div>
+                <h3>Description: </h3>
+                <p id="content">{{project.content}}</p>
+              </div>
+              <div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Position :{{project.positionName}}</li>
+                  <li class="list-group-item">
+                    Progress:
+                    <div class="progress mt-1">
+                      <div class="progress-bar" role="progressbar" v-bind:style="{width: project.progress + '%'}" v-bind:aria-valuenow="project.progress"
+                        aria-valuemin="0" aria-valuemax="100">{{project.progress}}%</div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    Charity: {{project.charity}}
+                  </li>
+                  <li class="list-group-item">
+                    <p>price: <small class="display-6 text-primary fw-bold">${{project.price}}/meal</small></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <a class="btn btn-secondary w-20">Edit project</a>
+              <a class="btn btn-success w-20">Donate Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container bg-light">
+      <div class="text-center">
+        <h2 class="my-3 text-success">Where is the {{project.positionName}}</h2>
+      </div>
+      <div id="map" style="height: 300px; width: 100%;"></div>
+    </div>
+
+    <!-- insert footer from thymeleaf fragments -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
+  </div>
+  <script src="/javascript/project_detail.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QZ8Ze04-faOyB8kHs0rb9bd6Cmn7NCU&callback=initMap&v=weekly"
+    async></script>
+</body>
+
+</html>
