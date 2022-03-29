@@ -3,7 +3,6 @@
 <head>
     <!-- insert head from thymeleaf header fragment -->
     <div th:insert="~{fragments/header :: head}"></div>
-
 </head>
 
 <body>
@@ -12,12 +11,12 @@
         <div th:insert="~{fragments/navbar :: nav}"></div>
         <section id="projects">
             <div class="container">
-                <p class="mt-5 text-white">  top  </p>
-                <input v-model="term" class="form-control form-control-dark w-100" type="text" placeholder="Search the project"
-                    aria-label="Search">
+                <p class="mt-5 text-white"> top </p>
+                <input v-model="term" class="form-control form-control-dark w-100" type="text"
+                    placeholder="Search the project" aria-label="Search">
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4">
                     <div class="col" v-for="project in filteredProjects">
-                        <div class="card m-3 h-100">
+                        <div class="card m-2 h-100">
                             <img :src="project.img" alt="" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">{{project.title}}</h5>
@@ -31,7 +30,6 @@
                 </div>
             </div>
         </section>
-
         <!-- insert footer from thymeleaf fragments -->
         <div th:insert="~{fragments/footer :: footer}"></div>
     </div>
