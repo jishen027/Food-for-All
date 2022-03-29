@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Contact Us")
+@RequestMapping("/contact-us")
 @Validated
 public class ContactusController {
 
@@ -15,6 +15,6 @@ public class ContactusController {
     public String _contactus() {
         //TODO:
 
-        return "Contact Us";
+        return "contact-us";
     }
 }
