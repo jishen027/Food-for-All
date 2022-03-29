@@ -62,6 +62,7 @@ public class DonateController {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
+                /**create success message**/
                 return "success";
             }
         } catch (PayPalRESTException e) {
