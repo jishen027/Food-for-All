@@ -1,4 +1,4 @@
-package com.team12.foodforall.controller;
+package com.team12.foodforall.controller.donation;
 
 import com.team12.foodforall.paypal.Order;
 import com.team12.foodforall.paypal.CreatePayment;
