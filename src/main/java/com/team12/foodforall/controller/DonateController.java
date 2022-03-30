@@ -4,20 +4,13 @@ import com.team12.foodforall.paypal.Order;
 import com.team12.foodforall.paypal.CreatePayment;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
-/**
- * @author: Long Hin Vong
- * @date: 19/03/2022 :23:12
- **/
 @Controller
 public class DonateController {
 
@@ -27,7 +20,7 @@ public class DonateController {
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
 
-    @GetMapping("/donate")
+    @RequestMapping("/donate")
     public String donate() {
         return "donate";
     }
@@ -35,8 +28,7 @@ public class DonateController {
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order") Order order) {
         try {
-            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-                    order.getIntent(), order.getDescription(), "http://localhost:8000/" + CANCEL_URL,
+            Payment payment = service.createPayment(order.getProjectID(), order.getQuantity(), "http://localhost:8000/" + CANCEL_URL,
                     "http://localhost:8000/" + SUCCESS_URL);
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {

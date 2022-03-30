@@ -10,7 +10,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Order {
-    private double price;
+    private Integer projectID;
+    private Integer quantity;
     private String currency;
     private String method;
     private String intent;
