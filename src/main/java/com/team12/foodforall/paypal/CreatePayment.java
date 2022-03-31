@@ -28,11 +28,15 @@ public class CreatePayment {
             String cancelUrl,
             String successUrl) throws PayPalRESTException{
         /**Need to retrieve following information from database based on the project ID**/
-        String method = "Paypal";
-        String intent = "SALE";
+
+        //These need to be taken from database
         String description = "Testing";
         String currency = "GBP";
         double price = 10;
+
+        //Constant variables
+        final String intent = "SALE";
+        final String method = "Paypal";
         double total_price;
 
         Amount amount = new Amount();
