@@ -19,8 +19,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
  * @date: 19/03/2022 22:48
  **/
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE )
 @Rollback(false)
+
 public class UserRepositoryTests {
 
     @Autowired
@@ -32,21 +33,24 @@ public class UserRepositoryTests {
     @Test
     public void testCreateUser() {
         User user = new User();
+        user.setId(123L);
         user.setEmail("ridsfassssf@gmail.com");
         user.setPassword("ravi2020");
         user.setFirstName("Ravi");
         user.setLastName("Kumar");
+        user.setCharityName("Test Project Name");
 
         final Project project = new Project();
         Set<Project> projects = Set.of(project);
         user.setProjects(projects);
 
-        User savedUser = repo.save(user);
+
+        User savedUser = entityManager.persist(user);
+        User queryResult = repo.findByEmail(user.getEmail());
+
+        assertThat(savedUser.getEmail()).isEqualTo(queryResult.getEmail());
+        }
 
 
-        User existUser = entityManager.find(User.class, savedUser.getId());
-
-        assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
-
-    }
 }
+
