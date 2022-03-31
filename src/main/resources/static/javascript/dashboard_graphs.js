@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-29 17:59:42
+ * @Last Modified time: 2022-03-31 12:51:12
  */
 
 var app = new Vue({
@@ -50,7 +50,6 @@ if (option && typeof option === 'object') {
   myLineChart.setOption(option);
 }
 
-
 // pie chart
 var pieDom = document.getElementById("pieChart");
 var myPieChart = echarts.init(pieDom);
@@ -65,10 +64,6 @@ option = {
   },
   tooltip: {
     trigger: 'item'
-  },
-  legend: {
-    orient: 'vertical',
-    left: 'right'
   },
   series: [
     {
