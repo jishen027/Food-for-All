@@ -114,12 +114,11 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
-            <!-- NEED A WAY TO POST PROJECT ID WHEN SELECTING PROJECT -->
-            <form method="post"  action="/pay" modelAttribute="order">
+            <form method="post"  action="/subscribe" modelAttribute="subscribe">
                 <div class="col-50">
                     <h3>Payment</h3>
-                    <label for="quantity">Total Quantity</label>
-                    <input type="text" id="quantity" name="quantity" value="1">
+                    <label for="frequency">Frequency of Donation</label>
+                    <input type="text" id="frequency" name="Frequency" value="Monthly">
                 </div>
 
                 <input type="submit" value="Continue to checkout" class="btn">

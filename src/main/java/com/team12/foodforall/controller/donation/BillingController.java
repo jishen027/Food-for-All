@@ -1,38 +1,41 @@
 package com.team12.foodforall.controller.donation;
 
-import com.team12.foodforall.paypal.Order;
-import com.team12.foodforall.paypal.CreatePayment;
+import com.team12.foodforall.paypal.Billing;
+import com.team12.foodforall.paypal.CreatePlan;
 
-import org.hibernate.validator.constraints.URL;
+import com.team12.foodforall.paypal.CreateProduct;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.paypal.api.payments.Links;
-import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.Plan;
 import com.paypal.base.rest.PayPalRESTException;
 
+import java.io.IOException;
+
 @Controller
-public class DonateController {
+public class BillingController {
 
     @Autowired
-    CreatePayment service;
+    CreatePlan service;
+    @Autowired
+    CreateProduct product;
 
-    public static final String SUCCESS_URL = "pay/success";
-    public static final String CANCEL_URL = "pay/cancel";
+    public static final String SUCCESS_URL = "billing/success";
+    public static final String CANCEL_URL = "billing/cancel";
 
-    @RequestMapping("/donate")
+    @RequestMapping("/billing")
     public String donate() {
-        return "donate";
+        return "billing";
     }
 
-
-    @PostMapping("/pay")
-    public String payment(@ModelAttribute("order") Order order) {
+    @PostMapping("/subscribe")
+    public String billing(@ModelAttribute("subscribe") Billing bill) {
         try {
-            Payment payment = service.createPayment(order.getProjectID(), order.getQuantity(), "http://localhost:8000/" + CANCEL_URL,
+            Plan plan = service.createPlan(bill.getProjectID(), bill.getFrequency(), "http://localhost:8000/" + CANCEL_URL,
                     "http://localhost:8000/" + SUCCESS_URL);
-            for(Links link:payment.getLinks()) {
+            for(Links link:plan.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
                     return "redirect:"+link.getHref();
                 }
@@ -40,6 +43,8 @@ public class DonateController {
 
         } catch (PayPalRESTException e) {
 
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "redirect:/";
@@ -53,9 +58,9 @@ public class DonateController {
     @GetMapping(value = SUCCESS_URL)
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
         try {
-            Payment payment = service.executePayment(paymentId, payerId);
-            System.out.println(payment.toJSON());
-            if (payment.getState().equals("approved")) {
+            Plan plan = service.retrieve();
+            System.out.println(plan.toJSON());
+            if (plan.getState().equals("approved")) {
                 /**create success message**/
                 return "index";
             }

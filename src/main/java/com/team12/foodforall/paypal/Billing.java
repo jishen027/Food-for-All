@@ -1,19 +1,19 @@
 package com.team12.foodforall.paypal;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Getter
-@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Order {
+public class Billing {
     private Integer projectID;
-    private Integer quantity;
     private String currency;
-    private String method;
-    private String intent;
+    private String price;
+    private String frequency;
     private String description;
 
 }
