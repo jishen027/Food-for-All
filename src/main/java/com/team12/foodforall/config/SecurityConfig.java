@@ -18,7 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/register").permitAll()  // allow any user to register
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/register").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin().loginPage("/login").usernameParameter("email").permitAll().defaultSuccessUrl("/").failureUrl("/login?loginError=true")

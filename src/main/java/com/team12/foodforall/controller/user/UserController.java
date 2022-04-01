@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -34,30 +35,6 @@ public class UserController {
         }
 
         return "login";
-    }
-
-
-    @PostMapping("/login")
-    public String loginByEmail(@Valid LoginForm loginForm, BindingResult result, Model model, HttpSession session) {
-        System.out.println(loginForm);
-//        TODO: to implement
-        User user = userService.login(loginForm);
-
-//        TODO: error --> login failed, error detail thrown in the userService
-        if(user == null){
-            // login failed
-            return "login";
-        }
-
-        session.setAttribute("loginStatus","true");
-
-        session.setAttribute("user", user);
-        session.setAttribute("userName","gh");
-        session.setAttribute("userId",101);
-        session.setAttribute("userRole","admin");
-
-        // TODO: success-> redirct to the correct page
-        return "index";
     }
 
     @GetMapping("/register")

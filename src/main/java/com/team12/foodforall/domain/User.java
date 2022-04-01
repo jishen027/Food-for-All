@@ -5,7 +5,6 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * @author: Heng Gao
@@ -38,11 +37,6 @@ public class User {
 
     @Column(nullable = false, length = 64)
     private String password;
-
-    @OneToMany(mappedBy = "user")
-    @Column(name = "projects")
-    @JsonIgnore
-    private Set<Project> projects;
 
 
 
