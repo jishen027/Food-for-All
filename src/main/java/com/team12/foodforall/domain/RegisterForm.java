@@ -1,10 +1,10 @@
 package com.team12.foodforall.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -28,6 +28,10 @@ public class RegisterForm {
     @Size(min = 2, message = "user name should have at least 2 characters")
     @NotEmpty(message = "lastname is mandatory")
     private String lastName;
+
+    @Size(min = 1, message = "charity name should have at least 1 characters")
+    @NotEmpty(message = "charityName is mandatory")
+    private String charityName;
 
     @Email
     @NotEmpty(message = "Email is mandatory")
