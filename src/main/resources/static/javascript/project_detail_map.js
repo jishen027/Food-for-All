@@ -2,9 +2,8 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-26 19:02:53 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-26 19:33:31
+ * @Last Modified time: 2022-03-28 23:50:49
  */
-
 // Initialize and add the map
 function initMap() {
   // The location of Uluru

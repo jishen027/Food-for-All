@@ -3,70 +3,24 @@
 <head>
     <!-- insert head from thymeleaf header fragment -->
     <div th:insert="~{fragments/header :: head}"></div>
-
 </head>
 
 <body>
     <div id="app">
         <!-- insert navbar from thymeleaf nav fragment -->
         <div th:insert="~{fragments/navbar :: nav}"></div>
-
         <section id="projects">
             <div class="container">
-                <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
+                <p class="mt-5 text-white"> top </p>
+                <input v-model="term" class="form-control form-control-dark w-100" type="text"
+                    placeholder="Search the project" aria-label="Search">
+                <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4">
+                    <div class="col" v-for="project in filteredProjects">
+                        <div class="card m-2 h-100">
+                            <img :src="project.img" alt="" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/FoodforAll03.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card m-3 h-100">
-                            <img src="/Foodforall.jpeg" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-                                    vitae
-                                    ...</p>
+                                <h5 class="card-title">{{project.title}}</h5>
+                                <p class="card-text">{{project.content.slice(0,150)}}...</p>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
@@ -76,7 +30,6 @@
                 </div>
             </div>
         </section>
-
         <!-- insert footer from thymeleaf fragments -->
         <div th:insert="~{fragments/footer :: footer}"></div>
     </div>

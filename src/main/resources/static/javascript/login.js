@@ -2,10 +2,8 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-17 17:44:29 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-22 01:21:18
+ * @Last Modified time: 2022-03-29 17:40:02
  */
-
-
 var app = new Vue({
   el: '#app',
   data() {

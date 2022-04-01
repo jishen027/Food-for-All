@@ -2,6 +2,18 @@
 
 <head>
     <div th:insert="~{fragments/header :: head}"></div>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar {
+            left: 0;
+            z-index: 100;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+    </style>
 </head>
 
 <body>
@@ -9,69 +21,30 @@
         <!-- insert navbar from thymeleaf nav fragment -->
         <div th:insert="~{fragments/navbar :: nav}"></div>
 
-        <div class="row">
-            <div id="sidebarMenu"
-                class="col-md-3 col-lg-2 d-flex flex-column flex-shrink-0 p-3 text-white bg-success sidebar collapse"
-                style="width: 280px">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-4">Charity Dashboard</span>
-                </a>
-                <a class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">Menu</span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="/dashboard-graphs" class="nav-link text-white">
-                            <i class="bi bi-bar-chart-line"></i>
-                            Graphs
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/dashboard-projects" class="nav-link active" aria-current="page">
-                            <i class="bi bi-kanban"></i>
-                            My Projects
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <i class="bi bi-gear"></i>
-                            Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <i class="bi bi-person-circle"></i>
-                            Profiles
-                        </a>
-                    </li>
-                </ul>
-                <hr>
-                <div>
-                    <a href="#" class="btn btn-warning d-flex text-white text-decoration-none">
-                        <!-- <img src="https://github.com/jishen027.png" alt="" width="32" height="32" class="rounded-circle me-2"> -->
-                        <strong>Create Project</strong>
-                    </a>
-                </div>
-            </div>
+        <div class="container-fluid">
+            <div class="row mt-5">
+                <!-- insert navbar from thymeleaf sidebar fragment  -->
+                <div th:insert="~{fragments/sidebar :: sidebar}"></div>
 
-            <div class="col-md-9 ms-sm-auto col-lg-10">
-                <div class="row row-cols-1 row-cols-sm-4 row-col-lg-5 g-1">
-                    <div class="col" v-for="project in projects">
-                        <div class="card h-100">
-                            <img v-bind:src="project.img" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{project.title}}</h5>
-                                <p class="card-text">{{project.content}}</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="/detail" class="btn btn-primary stretched-link d-flex">Edit Project</a>
+                <main class="col-md-8 ms-sm-auto col-lg-9 px-md-4">
+                    <div class="row row-cols-1 row-cols-sm-3 row-col-lg-4 g-1">
+                        <p class="mt-2 text-white"> top </p>
+                        <input v-model="term" class="form-control form-control-dark w-100" type="text"
+                            placeholder="Search the project" aria-label="Search">
+                        <div class="col" v-for="project in filteredProjects">
+                            <div class="card h-100 m-2">
+                                <img v-bind:src="project.img" alt="" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{project.title}}</h5>
+                                    <p class="card-text">{{project.content}}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="/detail" class="btn btn-primary stretched-link d-flex">View Project</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     </div>

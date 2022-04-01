@@ -9,11 +9,10 @@
     <div id="app">
         <!-- insert navbar from thymeleaf nav fragment -->
         <div th:insert="~{fragments/navbar :: nav}"></div>
-
         <!-- main image and intro text -->
         <section id="intro">
             <div class="container-lg">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center align-items-center mt-5">
                     <div class="col-md-5 text-center text-md-start">
                         <h1>
                             <div class="display-2 text-success">Food For All</div>
@@ -31,7 +30,6 @@
                 </div>
             </div>
         </section>
-
         <!-- pricing plans -->
         <section id="pricing" class="bg-light">
             <div class="container">
@@ -41,63 +39,21 @@
                             projects...</a></p>
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
-                    <div class="col">
+                    <div class="col" v-for="project in projects">
                         <div class="card h-100">
-                            <img src="/Foodforall.jpeg" class="card-img-top" alt="...">
+                            <img v-bind:src="project.img" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
+                                <h5 class="card-title">{{project.title}}</h5>
+                                <p class="card-text">{{project.content.slice(0,150)}}...</p>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                        aria-valuemin="0" aria-valuemax="100">25%</div>
+                                    <div class="progress-bar" role="progressbar"
+                                        v-bind:style="{width: project.progress + '%'}"
+                                        v-bind:aria-valuenow="project.progress" aria-valuemin="0" aria-valuemax="100">
+                                        {{project.progress}}%</div>
                                 </div>
-                                <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
-                                <div class="text-end">
-                                    <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="/Foodforall03.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                        aria-valuemin="0" aria-valuemax="100">25%</div>
-                                </div>
-                                <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
-                                <div class="text-end">
-                                    <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="/FoodforAll02.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer bg-white border-0">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                        aria-valuemin="0" aria-valuemax="100">25%</div>
-                                </div>
-                                <p class="display-5 my-4 text-primary fw-bold">$8.99/meal</p>
+                                <p class="display-5 my-4 text-primary fw-bold">${{project.price}}/meal</p>
                                 <div class="text-end">
                                     <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
                                 </div>
@@ -107,7 +63,6 @@
                 </div>
             </div>
         </section>
-
         <!-- insert footer from thymeleaf fragments -->
         <div th:insert="~{fragments/footer :: footer}"></div>
     </div>

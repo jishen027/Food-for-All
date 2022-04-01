@@ -4,8 +4,8 @@
 
 <body>
   <div th:fragment="nav">
-    <nav class="navbar navbar-expand-md navbar-light fix-top border-bottom">
-      <div class="container-xxl">
+    <nav class="navbar navbar-light fixed-top navbar-expand-md border-bottom bg-light">
+      <div class="container-fluid">
         <a href="/" class="navbar-brand">
           <span class="fw-bold text-success">
             <i class="bi bi-balloon-heart-fill"></i>
@@ -39,17 +39,17 @@
             <li v-if="loginState" class="nav-item  d-md-inline text-end">
               <a href="/dashboard-projects" class="btn btn-success">DashBoard</a>
             </li>
+            <li v-if="loginState" class="nav-item d-md-inline text-end">
+              <a href="/" class="nav-link text-primary">Log out</a>
+            </li>
             <li v-else class="nav-item d-md-inline text-end">
               <a href="/login" class="btn btn-warning">Login</a>
             </li>
+
           </ul>
         </div>
       </div>
     </nav>
-  </div>
-
-  <div th:fragment="sidebar">
-    
   </div>
 </body>
 
