@@ -1,5 +1,6 @@
 package com.team12.foodforall.controller.user;
 
+import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.service.user.UserService;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -21,6 +23,19 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+    @GetMapping("/login")
+    public String showLoginForm(LoginForm loginForm, HttpSession session, Model model, String loginError, String logout) {
+        if (loginError != null) {
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+        }
+        if (logout != null){
+            model.addAttribute("msg", "You have been logged out successfully.");
+        }
+
+        return "login";
+    }
 
     @GetMapping("/register")
     public String showRegisterForm(RegisterForm registerForm) {

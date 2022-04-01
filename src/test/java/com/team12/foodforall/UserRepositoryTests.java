@@ -31,7 +31,7 @@ public class UserRepositoryTests {
         User user = new User();
         user.setEmail("ridsfassssf@gmail.com");
         user.setPassword("ravi2020");
-        user.setConfirmedPassword("ravi2020");
+        user.setCharityName("abc charity");
         user.setFirstName("Ravi");
         user.setLastName("Kumar");
 

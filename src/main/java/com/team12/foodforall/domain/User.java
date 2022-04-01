@@ -23,6 +23,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "charity_name", nullable = false, length = 20)
+    private String charityName;
+
     @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
 
@@ -35,8 +38,6 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(nullable = false, length = 64)
-    private String confirmedPassword;
 
 
     @Override

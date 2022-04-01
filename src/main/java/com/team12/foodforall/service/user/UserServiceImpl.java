@@ -42,6 +42,10 @@ public class UserServiceImpl implements UserService{
         // TODO: more validation
 
 
+        if(!registerForm.getPassword().equals(registerForm.getConfirmedPassword())){
+            throw new RuntimeException("Password not matched");
+        }
+
         //TODO: Encrypt Password
         String encryptedPassword = encoder.encode(registerForm.getPassword());
 
@@ -50,7 +54,6 @@ public class UserServiceImpl implements UserService{
         user.setLastName(registerForm.getLastName());
         user.setEmail(registerForm.getEmail());
         user.setPassword(encryptedPassword);
-        user.setConfirmedPassword(encryptedPassword);
 
         return userRepository.save(user);
     }
