@@ -9,11 +9,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Billing {
+public class Subscription {
     private Integer projectID;
-    private String currency;
-    private String price;
     private String frequency;
-    private String description;
 
 }

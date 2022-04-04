@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+    <title>Complete Payment</title>
+</head>
+
+<body>
+<script src="https://www.paypal.com/sdk/js?client-id=AQ7lZQUk9vYnvGGdKSNs96rEdnH1qkMeW9XZReTYk2egn6ECO2Vh9A64ABy2PKSnZ_7VYNxs_LmsaJxC&vault=true&intent=subscription"></script>
+
+<h2>Finalise Your Payment Below</h2>
+
+<div id="paypal-button-container"></div>
+
+<script>
+    paypal.Buttons({
+        createSubscription: function(data, actions) {
+            let val = '[[${planId}]]';
+            return actions.subscription.create({
+                'plan_id': val // Creates the subscription
+            });
+        },
+        onApprove: function(data, actions) {
+            alert('You have successfully created subscription ' + data.subscriptionID); // Optional message given to subscriber
+        }
+    }).render('#paypal-button-container'); // Renders the PayPal button
+</script>
+</body>
+</html>

@@ -114,14 +114,17 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
-            <form method="post"  action="/subscribe" modelAttribute="subscribe">
+            <form method="post"  action="/billing/subscribe" modelAttribute="subscribe">
                 <div class="col-50">
                     <h3>Payment</h3>
-                    <label for="frequency">Frequency of Donation</label>
-                    <input type="text" id="frequency" name="Frequency" value="Monthly">
+                    <select name="frequency" id="frequency">
+                        <option value="Monthly" label="Donate Every Month"/>
+                        <option value="Quarterly" label="Donate Every 3 Months"/>
+                        <option value="Yearly" label="Donate Every Year"/>
+                    </select>
                 </div>
 
-                <input type="submit" value="Continue to checkout" class="btn">
+                <input type="submit" value="Finalise Payment" class="btn">
             </form>
         </div>
     </div>

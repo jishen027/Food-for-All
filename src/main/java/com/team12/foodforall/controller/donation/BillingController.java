@@ -1,21 +1,21 @@
 package com.team12.foodforall.controller.donation;
 
-import com.team12.foodforall.paypal.Billing;
+import com.team12.foodforall.paypal.CreateProduct;
+import com.team12.foodforall.paypal.Subscription;
 import com.team12.foodforall.paypal.CreatePlan;
 
-import com.team12.foodforall.paypal.CreateProduct;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.paypal.api.payments.Links;
-import com.paypal.api.payments.Plan;
 import com.paypal.base.rest.PayPalRESTException;
 
 import java.io.IOException;
 
 @Controller
 public class BillingController {
+
 
     @Autowired
     CreatePlan service;
@@ -24,22 +24,46 @@ public class BillingController {
 
     public static final String SUCCESS_URL = "billing/success";
     public static final String CANCEL_URL = "billing/cancel";
+    public Integer ID;
+    public String planID;
+    public String productID;
 
-    @RequestMapping("/billing")
-    public String donate() {
-        return "billing";
+    @GetMapping("/billing")
+    public String getBilling(@RequestParam("id") String id, Model model) throws IOException, PayPalRESTException {
+        try{
+            int number = Integer.parseInt(id);
+            System.out.println(number);
+            ID = number;
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        String newProduct = product.createProduct(ID);
+        productID = newProduct;
+        Subscription bil = new Subscription();
+        model.addAttribute("subscribe", bil);
+
+        return "subscribe";
     }
 
-    @PostMapping("/subscribe")
-    public String billing(@ModelAttribute("subscribe") Billing bill) {
+    @PostMapping("/billing/subscribe")
+    public String billing(@ModelAttribute("subscribe") Subscription sub) {
         try {
-            Plan plan = service.createPlan(bill.getProjectID(), bill.getFrequency(), "http://localhost:8000/" + CANCEL_URL,
-                    "http://localhost:8000/" + SUCCESS_URL);
-            for(Links link:plan.getLinks()) {
-                if(link.getRel().equals("approval_url")) {
-                    return "redirect:"+link.getHref();
-                }
+            switch (sub.getFrequency()){
+                case "Monthly":
+                    String monthly = service.makeMonthly(ID, productID);
+                    planID = monthly;
+                    break;
+                case "Quarterly":
+                    String quarterly = service.makeQuarterly(ID, productID);
+                    planID = quarterly;
+                    break;
+                case "Yearly":
+                    String yearly = service.makePlan(ID, productID);
+                    planID = yearly;
+                    break;
             }
+            System.out.println(planID);
 
         } catch (PayPalRESTException e) {
 
@@ -47,28 +71,34 @@ public class BillingController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "redirect:/finalise";
+    }
+
+    @GetMapping("/finalise")
+    public String finalise(Model newModel){
+        newModel.addAttribute("planId", planID);
+        return "finaliseSub";
     }
 
     @GetMapping(value = CANCEL_URL)
-    public String cancelPay() {
+    public String cancelBill() {
         return "index";
     }
 
-    @GetMapping(value = SUCCESS_URL)
-    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+    /*@GetMapping(value = SUCCESS_URL)
+    public String successBill(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
         try {
-            Plan plan = service.retrieve();
+            String plan = service.retrieve();
             System.out.println(plan.toJSON());
             if (plan.getState().equals("approved")) {
-                /**create success message**/
+                /**create success message**
                 return "index";
             }
         } catch (PayPalRESTException e) {
             System.out.println(e.getMessage());
         }
         return "redirect:/";
-    }
+    }*/
 
 
 }
