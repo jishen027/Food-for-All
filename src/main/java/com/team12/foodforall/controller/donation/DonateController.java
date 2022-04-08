@@ -4,6 +4,7 @@ import com.team12.foodforall.paypal.Order;
 import com.team12.foodforall.paypal.CreatePayment;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +12,7 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
-import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.*;
 
 @Controller
 public class DonateController {
@@ -61,14 +62,13 @@ public class DonateController {
     }
 
     @GetMapping(value = SUCCESS_URL)
-    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, Model model) {
         try {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-                showMessageDialog(null, "Payment has been processed successfully! ");
-                /**create success message**/
-                return "index";
+                model.addAttribute("paymentID", paymentId);
+                return "paymentSuccess";
             }
         } catch (PayPalRESTException e) {
             System.out.println(e.getMessage());

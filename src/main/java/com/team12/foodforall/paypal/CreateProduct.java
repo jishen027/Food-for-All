@@ -1,11 +1,7 @@
 package com.team12.foodforall.paypal;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +17,7 @@ public class CreateProduct {
     private APIContext apiContext;
 
     public String createProduct(Integer projectID) throws IOException, PayPalRESTException {
+
 
         /** Retrieve from database**/
         String name = "Testing 1";
