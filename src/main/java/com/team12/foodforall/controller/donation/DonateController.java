@@ -4,13 +4,14 @@ import com.team12.foodforall.paypal.Order;
 import com.team12.foodforall.paypal.CreatePayment;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 @Controller
 public class DonateController {
@@ -65,6 +66,7 @@ public class DonateController {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
+                showMessageDialog(null, "Payment has been processed successfully! ");
                 /**create success message**/
                 return "index";
             }

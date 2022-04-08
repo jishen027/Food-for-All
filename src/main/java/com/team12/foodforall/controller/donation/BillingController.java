@@ -1,10 +1,8 @@
 package com.team12.foodforall.controller.donation;
 
-import com.google.gson.JsonObject;
 import com.team12.foodforall.paypal.CreateProduct;
 import com.team12.foodforall.paypal.Subscription;
 import com.team12.foodforall.paypal.CreatePlan;
-import com.team12.foodforall.paypal.ActiveSub;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,7 +84,7 @@ public class BillingController {
     public String summary(@ModelAttribute("activeSub") String subID, Model newModel){
         subId = subID;
         newModel.addAttribute("subId", subId);
-        return "success";
+        return "subscriptionSuccess";
     }
 
     @GetMapping(value = CANCEL_URL)
