@@ -1,8 +1,10 @@
 package com.team12.foodforall.controller.donation;
 
+import com.google.gson.JsonObject;
 import com.team12.foodforall.paypal.CreateProduct;
 import com.team12.foodforall.paypal.Subscription;
 import com.team12.foodforall.paypal.CreatePlan;
+import com.team12.foodforall.paypal.ActiveSub;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,11 @@ public class BillingController {
     @Autowired
     CreateProduct product;
 
-    public static final String SUCCESS_URL = "billing/success";
     public static final String CANCEL_URL = "billing/cancel";
     public Integer ID;
     public String planID;
     public String productID;
+    public String subId;
 
     @GetMapping("/billing")
     public String getBilling(@RequestParam("id") String id, Model model) throws IOException, PayPalRESTException {
@@ -80,25 +82,17 @@ public class BillingController {
         return "finaliseSub";
     }
 
+    @PostMapping("/bill/summary")
+    public String summary(@ModelAttribute("activeSub") String subID, Model newModel){
+        subId = subID;
+        newModel.addAttribute("subId", subId);
+        return "success";
+    }
+
     @GetMapping(value = CANCEL_URL)
     public String cancelBill() {
         return "index";
     }
-
-    /*@GetMapping(value = SUCCESS_URL)
-    public String successBill(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
-        try {
-            String plan = service.retrieve();
-            System.out.println(plan.toJSON());
-            if (plan.getState().equals("approved")) {
-                /**create success message**
-                return "index";
-            }
-        } catch (PayPalRESTException e) {
-            System.out.println(e.getMessage());
-        }
-        return "redirect:/";
-    }*/
 
 
 }

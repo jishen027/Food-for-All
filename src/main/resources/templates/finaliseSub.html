@@ -6,22 +6,27 @@
 </head>
 
 <body>
-<script src="https://www.paypal.com/sdk/js?client-id=AQ7lZQUk9vYnvGGdKSNs96rEdnH1qkMeW9XZReTYk2egn6ECO2Vh9A64ABy2PKSnZ_7VYNxs_LmsaJxC&vault=true&intent=subscription"></script>
-
 <h2>Finalise Your Payment Below</h2>
+<script src="https://www.paypal.com/sdk/js?client-id=AQ7lZQUk9vYnvGGdKSNs96rEdnH1qkMeW9XZReTYk2egn6ECO2Vh9A64ABy2PKSnZ_7VYNxs_LmsaJxC&vault=true&intent=subscription"></script>
+<!-- Add your client_id -->
 
 <div id="paypal-button-container"></div>
-
+<form method="post" id="myForm" action="/bill/summary" modelAttribute="activeSub">
+    <input id="subId" name="subscription ID" type="hidden" value="">
+</form>
 <script>
     paypal.Buttons({
         createSubscription: function(data, actions) {
-            let val = '[[${planId}]]';
             return actions.subscription.create({
-                'plan_id': val // Creates the subscription
+                'plan_id': '[[${planId}]]' // Creates the subscription
             });
         },
         onApprove: function(data, actions) {
             alert('You have successfully created subscription ' + data.subscriptionID); // Optional message given to subscriber
+            document.getElementById("subId").value = data.subscriptionID;
+            document.getElementById("myForm").submit();
+
+
         }
     }).render('#paypal-button-container'); // Renders the PayPal button
 </script>
