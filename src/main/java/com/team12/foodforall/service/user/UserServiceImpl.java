@@ -48,10 +48,7 @@ public class UserServiceImpl implements UserService{
         user.setFirstName(registerForm.getFirstName());
         user.setLastName(registerForm.getLastName());
         user.setPassword(registerForm.getPassword());
-        user.setPassword(registerForm.getPassword());
-
-        user.setConfirmedPassword(registerForm.getConfirmedPassword());
-
+        user.setCharityName(registerForm.getCharityName());
         return userRepository.save(user);
     }
 

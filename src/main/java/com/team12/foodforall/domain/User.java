@@ -1,10 +1,14 @@
 package com.team12.foodforall.domain;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author: Heng Gao
@@ -13,7 +17,6 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name="users")
@@ -35,8 +38,14 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(nullable = false, length = 64)
-    private String confirmedPassword;
+    @Column(name = "charity_name", nullable = false, length = 20)
+    private String charityName;
+
+    @OneToMany(mappedBy = "user")
+    @Column(name = "projects")
+    @JsonIgnore
+    private Set<Project> projects;
+
 
 
     @Override
@@ -52,4 +61,13 @@ public class User {
         return getClass().hashCode();
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "firstName = " + firstName + ", " +
+                "lastName = " + lastName + ", " +
+                "email = " + email + ", " +
+                "password = " + password + ")";
+    }
 }

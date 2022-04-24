@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -30,7 +31,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String loginByEmail(@Valid LoginForm loginForm, BindingResult result, Model model) {
+    public String loginByEmail(@Valid LoginForm loginForm, BindingResult result, Model model, HttpSession session) {
         System.out.println(loginForm);
 //        TODO: to implement
         User user = userService.login(loginForm);
@@ -41,6 +42,9 @@ public class UserController {
             return "login";
         }
 
+        session.setAttribute("user", user);
+
+        session.getAttribute("user");
         // TODO: success-> redirct to the correct page
         return "index";
     }
