@@ -61,7 +61,8 @@ public class CreatePlan{
     //Makes the yearly billing plan
     public String makePlan(Integer projectID, String productID) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
-        String name = "Project 1 Yearly";
+        String pdesc = "Temp";
+        String name = String.format("Yearly %s", pdesc);
         String curr = "GBP";
         String price = "10";
         String pID = projectID.toString();
