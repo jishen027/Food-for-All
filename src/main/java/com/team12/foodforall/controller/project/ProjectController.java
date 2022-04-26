@@ -44,18 +44,15 @@ public class ProjectController {
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
 
-        session.setAttribute("loginStatus","true");
-        session.setAttribute("userName","gh");
-        session.setAttribute("userId",101);
-        session.setAttribute("userRole","admin");
-
         Project p1 = new Project();
         p1.setId(101L);
         p1.setTitle("P1 title1");
 
         Project p2 = new Project();
         p2.setId(102L);
+
         p2.setTitle("P2 title2");
+
 
 
         ArrayList<Project> projectList = new ArrayList<Project>();

@@ -42,9 +42,13 @@ public class UserController {
             return "login";
         }
 
-        session.setAttribute("user", user);
+        session.setAttribute("loginStatus","true");
 
-        session.getAttribute("user");
+        session.setAttribute("user", user);
+        session.setAttribute("userName","gh");
+        session.setAttribute("userId",101);
+        session.setAttribute("userRole","admin");
+
         // TODO: success-> redirct to the correct page
         return "index";
     }
