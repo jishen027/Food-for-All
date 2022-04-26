@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-31 12:51:12
+ * @Last Modified time: 2022-04-26 12:04:37
  */
 
 var app = new Vue({
@@ -30,7 +30,7 @@ var app = {};
 var option;
 option = {
   title: {
-    text: 'Stacked Line'
+    text: 'Average Income'
   },
   xAxis: {
     type: 'category',
@@ -58,7 +58,7 @@ var option;
 
 option = {
   title: {
-    text: 'Referer of a Website',
+    text: 'Projects Income',
     subtext: 'Fake Data',
     left: 'center'
   },
@@ -67,15 +67,15 @@ option = {
   },
   series: [
     {
-      name: 'Access From',
+      name: 'income calculate by dollar',
       type: 'pie',
       radius: '50%',
       data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
+        { value: 1048, name: 'Project 1' },
+        { value: 735, name: 'Project 2' },
+        { value: 580, name: 'Project 3' },
+        { value: 484, name: 'Project 4' },
+        { value: 300, name: 'Project 5' }
       ],
       emphasis: {
         itemStyle: {
