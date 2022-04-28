@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 /**
  * @author: Heng Gao
@@ -25,5 +26,10 @@ public class ProjectServiceImpl implements ProjectService{
         }
 
         return projectRepository.save(project);
+    }
+
+    @Override
+    public Optional<Project> findById(Long id) {
+        return projectRepository.findById(id);
     }
 }
