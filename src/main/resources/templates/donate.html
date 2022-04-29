@@ -111,22 +111,34 @@
     </style>
 </head>
 <body>
-<div class="row">
-    <div class="col-75">
-        <div class="container">
-            <!-- NEED A WAY TO POST PROJECT ID WHEN SELECTING PROJECT -->
-            <form method="post"  action="/pay" modelAttribute="order">
-                <div class="col-50">
-                    <h3>Payment</h3>
-                    <label for="quantity">Total Quantity</label>
-                    <input type="text" id="quantity" name="quantity" value="1">
+<section id="projects">
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <!-- NEED A WAY TO POST PROJECT ID WHEN SELECTING PROJECT -->
+                <div>
+                    <h3>Details</h3>
+                    <p>Title: [[${pTitle}]]</p>
+                    <p>Description: [[${pDesc}]]</p>
+                    <p>Currency: [[${pCurr}]]</p>
+                    <p>Price: [[${pPrice}]]</p>
                 </div>
+                <form method="post"  action="/pay" modelAttribute="order">
+                    <div class="col-50">
+                        <h3>Payment</h3>
+                        <label for="quantity">Total Quantity</label>
+                        <input type="text" id="quantity" name="quantity" value="1">
+                        <input type="hidden" id="name" name="name" th:value="${pTitle}">
+                        <input type="hidden" id="description" name="description" th:value="${pDesc}">
+                        <input type="hidden" id="currency" name="currency" th:value="${pCurr}">
+                        <input type="hidden" id="price" name="price" th:value="${pPrice}">
+                    </div>
 
-                <input type="submit" value="Continue to checkout" class="btn">
-            </form>
+                    <input type="submit" value="Continue to checkout" class="btn">
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+</section>
 </body>
 </html>

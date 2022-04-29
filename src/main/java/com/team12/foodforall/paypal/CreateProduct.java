@@ -16,12 +16,7 @@ public class CreateProduct {
     @Autowired
     private APIContext apiContext;
 
-    public String createProduct(Integer projectID) throws IOException, PayPalRESTException {
-
-
-        /** Retrieve from database**/
-        String name = "Testing 1";
-        String desc = "Testing subscriptions";
+    public String createProduct(Long projectID, String name, String desc) throws IOException, PayPalRESTException {
 
         URL url = new URL("https://api-m.sandbox.paypal.com/v1/catalogs/products");
         HttpURLConnection http = (HttpURLConnection)url.openConnection();

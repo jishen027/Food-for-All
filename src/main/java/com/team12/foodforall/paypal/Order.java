@@ -11,5 +11,9 @@ import lombok.*;
 public class Order {
     private Integer projectID;
     private Integer quantity;
+    private String name;
+    private String description;
+    private String currency;
+    private String price;
 
 }

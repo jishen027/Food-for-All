@@ -59,12 +59,9 @@ public class CreatePlan{
     }
 
     //Makes the yearly billing plan
-    public String makePlan(Integer projectID, String productID) throws IOException, PayPalRESTException {
+    public String makePlan(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
-        String pdesc = "Temp";
-        String name = String.format("Yearly %s", pdesc);
-        String curr = "GBP";
-        String price = "10";
+        String name = String.format("Yearly %s", pName);
         String pID = projectID.toString();
         System.out.println(productID);
 
@@ -81,16 +78,14 @@ public class CreatePlan{
         http.setRequestProperty("Content-Type", "application/json");
         http.setRequestProperty("PayPal-Request-Id",  String.format("Yearly-%s", pID));
 
-        return getString(productID, name, curr, price, http);
+        return getString(productID, name, curr, price.toString(), http);
 
     }
 
     //Makes the monthly billing plan
-    public String makeMonthly(Integer projectID, String productID) throws IOException, PayPalRESTException {
+    public String makeMonthly(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
-        String name = "Project 1 Monthly";
-        String curr = "GBP";
-        String price = "10";
+        String name = String.format("%s Monthly", pName);
         String pID = projectID.toString();
         System.out.println(productID);
         desc = "Monthly Donation";
@@ -106,16 +101,14 @@ public class CreatePlan{
         http.setRequestProperty("Content-Type", "application/json");
         http.setRequestProperty("PayPal-Request-Id",  String.format("Monthly-%s", pID));
 
-        return getString(productID, name, curr, price, http);
+        return getString(productID, name, curr, price.toString(), http);
 
     }
 
     //Makes the quarterly billing plan
-    public String makeQuarterly(Integer projectID, String productID) throws IOException, PayPalRESTException {
+    public String makeQuarterly(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
-        String name = "Project 1 Quarterly";
-        String curr = "GBP";
-        String price = "10";
+        String name = String.format("%s Quarterly", pName);
         String pID = projectID.toString();
         System.out.println(productID);
         desc = "Quarterly Donation";
@@ -131,7 +124,7 @@ public class CreatePlan{
         http.setRequestProperty("Content-Type", "application/json");
         http.setRequestProperty("PayPal-Request-Id", String.format("Quarterly-%s", pID));
 
-        return getString(productID, name, curr, price, http);
+        return getString(productID, name, curr, price.toString(), http);
 
     }
 

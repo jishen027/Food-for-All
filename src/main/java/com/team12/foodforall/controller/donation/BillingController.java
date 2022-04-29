@@ -1,9 +1,11 @@
 package com.team12.foodforall.controller.donation;
 
+import com.team12.foodforall.domain.Project;
 import com.team12.foodforall.paypal.CreateProduct;
 import com.team12.foodforall.paypal.Subscription;
 import com.team12.foodforall.paypal.CreatePlan;
 
+import com.team12.foodforall.service.project.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,27 +23,35 @@ public class BillingController {
     CreatePlan service;
     @Autowired
     CreateProduct product;
+    @Autowired
+    private ProjectService projectService;
 
-    public static final String CANCEL_URL = "billing/cancel";
-    public Integer ID;
+    public static final String CANCEL_URL = "billing/cancel/redir/index";
     public String planID;
-    public String productID;
     public String subId;
 
     @GetMapping("/billing")
-    public String getBilling(@RequestParam("id") String id, Model model) throws IOException, PayPalRESTException {
+    public String getBilling(@RequestParam("id") String id, Model model){
         try{
-            int number = Integer.parseInt(id);
+            Long number = Long.parseLong(id);
             System.out.println(number);
-            ID = number;
+            Project project = projectService.findById(number).get();
+            model.addAttribute("projects", project);
+            model.addAttribute("pID", number);
+            model.addAttribute("pTitle", project.getTitle());
+            model.addAttribute("pDesc", project.getContent());
+            model.addAttribute("pPrice", project.getPrice());
+            model.addAttribute("pCurr", project.getCurrency());
+            String newProduct = product.createProduct(project.getId(), project.getTitle(), project.getContent());
+            model.addAttribute("productID", newProduct);
         }
         catch (NumberFormatException ex){
             ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (PayPalRESTException e) {
+            e.printStackTrace();
         }
-        String newProduct = product.createProduct(ID);
-        productID = newProduct;
-        Subscription bil = new Subscription();
-        model.addAttribute("subscribe", bil);
 
         return "subscribe";
     }
@@ -51,15 +61,15 @@ public class BillingController {
         try {
             switch (sub.getFrequency()){
                 case "Monthly":
-                    String monthly = service.makeMonthly(ID, productID);
+                    String monthly = service.makeMonthly(sub.getProjectID(), sub.getProductID(), sub.getCurrency(), sub.getPrice(), sub.getName());
                     planID = monthly;
                     break;
                 case "Quarterly":
-                    String quarterly = service.makeQuarterly(ID, productID);
+                    String quarterly = service.makeQuarterly(sub.getProjectID(), sub.getProductID(), sub.getCurrency(), sub.getPrice(), sub.getName());
                     planID = quarterly;
                     break;
                 case "Yearly":
-                    String yearly = service.makePlan(ID, productID);
+                    String yearly = service.makePlan(sub.getProjectID(), sub.getProductID(), sub.getCurrency(), sub.getPrice(), sub.getName());
                     planID = yearly;
                     break;
             }

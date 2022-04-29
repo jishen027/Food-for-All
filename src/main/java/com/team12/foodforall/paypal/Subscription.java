@@ -10,7 +10,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Subscription {
-    private Integer projectID;
+    private Long projectID;
     private String frequency;
+    private String name;
+    private String productID;
+    private String description;
+    private String currency;
+    private Integer price;
 
 }

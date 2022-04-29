@@ -1,8 +1,10 @@
 package com.team12.foodforall.controller.donation;
 
+import com.team12.foodforall.domain.Project;
 import com.team12.foodforall.paypal.Order;
 import com.team12.foodforall.paypal.CreatePayment;
 
+import com.team12.foodforall.service.project.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,6 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
-import javax.swing.*;
 
 @Controller
 public class DonateController {
@@ -20,16 +21,23 @@ public class DonateController {
     @Autowired
     CreatePayment service;
 
+    @Autowired
+    private ProjectService projectService;
+
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
-    public Integer ID = 0;
 
     @GetMapping("/donate")
-    public String getID(@RequestParam("id") String id) {
+    public String getID(@RequestParam("id") String id, Model model) {
         try{
-            int number = Integer.parseInt(id);
+            Long number = Long.parseLong(id);
             System.out.println(number);
-            ID = number;
+            Project project = projectService.findById(number).get();
+            model.addAttribute("projects", project);
+            model.addAttribute("pTitle", project.getTitle());
+            model.addAttribute("pDesc", project.getContent());
+            model.addAttribute("pPrice", project.getPrice());
+            model.addAttribute("pCurr", project.getCurrency());
         }
         catch (NumberFormatException ex){
             ex.printStackTrace();
@@ -41,7 +49,7 @@ public class DonateController {
     @RequestMapping(value="/pay")
     public String payment(@ModelAttribute("order") Order order) {
         try {
-            Payment payment = service.createPayment(ID, order.getQuantity(), "http://localhost:8000/" + CANCEL_URL,
+            Payment payment = service.createPayment(order.getQuantity(), order.getDescription(), order.getCurrency(), order.getPrice(), "http://localhost:8000/" + CANCEL_URL,
                     "http://localhost:8000/" + SUCCESS_URL);
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
