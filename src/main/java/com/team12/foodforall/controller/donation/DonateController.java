@@ -26,12 +26,14 @@ public class DonateController {
 
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
+    public Long ID;
 
     @GetMapping("/donate")
     public String getID(@RequestParam("id") String id, Model model) {
         try{
             Long number = Long.parseLong(id);
             System.out.println(number);
+            ID = number;
             Project project = projectService.findById(number).get();
             model.addAttribute("projects", project);
             model.addAttribute("pTitle", project.getTitle());
@@ -53,6 +55,7 @@ public class DonateController {
                     "http://localhost:8000/" + SUCCESS_URL);
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
+                    projectService.updateProjectProgress(ID, order.getQuantity());
                     return "redirect:"+link.getHref();
                 }
             }

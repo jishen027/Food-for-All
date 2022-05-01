@@ -29,12 +29,14 @@ public class BillingController {
     public static final String CANCEL_URL = "billing/cancel/redir/index";
     public String planID;
     public String subId;
+    public Long ID;
 
     @GetMapping("/billing")
     public String getBilling(@RequestParam("id") String id, Model model){
         try{
             Long number = Long.parseLong(id);
             System.out.println(number);
+            ID = number;
             Project project = projectService.findById(number).get();
             model.addAttribute("projects", project);
             model.addAttribute("pID", number);
@@ -93,6 +95,7 @@ public class BillingController {
     @PostMapping("/bill/summary")
     public String summary(@ModelAttribute("activeSub") String subID, Model newModel){
         subId = subID;
+        projectService.updateProjectProgressSub(ID);
         newModel.addAttribute("subId", subId);
         return "subscriptionSuccess";
     }
