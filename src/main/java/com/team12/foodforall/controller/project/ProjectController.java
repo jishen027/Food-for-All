@@ -89,6 +89,10 @@ public class ProjectController {
     public String saveProject(Model model, Project project,
                               BindingResult error, @RequestParam("img") MultipartFile file) throws IOException {
 
+//      TODO :  Service.();
+
+//        StringUtils.cleanPath()
+
         String img = Base64.getEncoder().encodeToString(file.getBytes());
         project.setImg(img); // img in String
 
@@ -97,19 +101,7 @@ public class ProjectController {
         project.setUser(user);
         Project savedProject = projectService.addProject(project);
 
-
         return "redirect:/projects";
-    }
-
-    @RequestMapping("/dashboard-graphs")
-    public String dashboardGraphs(){
-        return "dashboard-graphs";
-    }
-
-
-    @RequestMapping("/dashboard-projects")
-    public String dashboardProjects(){
-        return "dashboard-projects";
     }
 
     @RequestMapping("/detail")
