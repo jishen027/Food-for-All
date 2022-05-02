@@ -1,12 +1,26 @@
 package com.team12.foodforall.controller.project;
 
 import com.team12.foodforall.domain.Project;
+import com.team12.foodforall.domain.User;
+import com.team12.foodforall.repository.ProjectRepository;
+import com.team12.foodforall.service.project.ProjectService;
+import com.team12.foodforall.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * @author: Heng Gao
@@ -15,14 +29,22 @@ import java.util.ArrayList;
 @Controller
 public class ProjectController {
 
+
+    private static String data_src;
+
+    private final Logger logger = LoggerFactory.getLogger(ProjectController.class);
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    ProjectRepository projectRepo;
+
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
-
-        session.setAttribute("loginStatus","true");
-        session.setAttribute("userName","gh");
-        session.setAttribute("userId",101);
-        session.setAttribute("userRole","admin");
-
 
         Project p1 = new Project();
         p1.setId(101L);
@@ -30,7 +52,9 @@ public class ProjectController {
 
         Project p2 = new Project();
         p2.setId(102L);
+
         p2.setTitle("P2 title2");
+
 
 
         ArrayList<Project> projectList = new ArrayList<Project>();
@@ -43,20 +67,41 @@ public class ProjectController {
     }
 
     // router for return the projects views
-    @RequestMapping("/projects")
-    public String projects(){
+    @GetMapping("/projects")
+    public String projects(Model model){
+        // retrie ve all data from
+        ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
+
+        model.addAttribute("projects", projects);
         return "projects";
     }
 
-    @RequestMapping("/dashboard-graphs")
-    public String dashboardGraphs(){
-        return "dashboard-graphs";
+
+
+    @GetMapping("/projects/add")
+    public String getAddProjectPage(Project project, Model model){
+        return "addProject";
     }
 
 
-    @RequestMapping("/dashboard-projects")
-    public String dashboardProjects(){
-        return "dashboard-projects";
+    // router for return the projects views
+    @PostMapping("/projects")
+    public String saveProject(Model model, Project project,
+                              BindingResult error, @RequestParam("img") MultipartFile file) throws IOException {
+
+//      TODO :  Service.();
+
+//        StringUtils.cleanPath()
+
+        String img = Base64.getEncoder().encodeToString(file.getBytes());
+        project.setImg(img); // img in String
+
+        // V2 retrieve all data from
+        User user = userService.findUserByEmail("fuck@owner.com");
+        project.setUser(user);
+        Project savedProject = projectService.addProject(project);
+
+        return "redirect:/projects";
     }
 
     @RequestMapping("/detail")
@@ -65,3 +110,5 @@ public class ProjectController {
     }
 
 }
+
+
