@@ -4,15 +4,13 @@ DROP TABLE IF EXISTS users;
 
 -- Create Project Table
 
-ALTER TABLE projects
-    ADD CONSTRAINT FK_PROJECTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 CREATE TABLE projects
 (
     id            BIGINT AUTO_INCREMENT NOT NULL,
     title         VARCHAR(255),
     content       VARCHAR(255),
-    img           VARCHAR(255),
+    img           BLOB,
     achievedmeals INT,
     targetmeals   INT,
     progress      FLOAT,
@@ -25,10 +23,6 @@ CREATE TABLE projects
     CONSTRAINT pk_projects PRIMARY KEY (id)
 );
 
-
--- Link projects to users
-ALTER TABLE projects
-    ADD CONSTRAINT FK_PROJECTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 CREATE TABLE users
 (
@@ -43,3 +37,6 @@ CREATE TABLE users
 
 ALTER TABLE users
     ADD CONSTRAINT uc_users_email UNIQUE (email);
+
+ALTER TABLE projects
+    ADD CONSTRAINT FK_PROJECTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);

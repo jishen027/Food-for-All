@@ -20,13 +20,15 @@
                 <!--     For each project     -->
                 <div class="col" v-for="project in filteredProjects">
                     <div class="card m-2 h-100">
-
-                        <!--  TODO： enable photo-->
-                        <!--       <img :src="project.img" alt="" class="card-img-top">-->
-                        <div class="card-body">
+                        <div th:each="project : ${projects}" class="card-body">
                             <h5 class="card-title">{{project.title}}</h5>
                             <p class="card-text">{{project.content.slice(0,150)}}...</p>
                             <h5 class="card-title">{{project.price}}</h5>
+
+                            <!--  TODO : Display image in base64 String-->
+                            <!--   <img src='data:image/*;base64,'+ {{projects.get(1).getImg()}} class="product-image">-->
+
+
                         </div>
                         <div class="card-footer bg-white border-0">
                             <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>

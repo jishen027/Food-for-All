@@ -13,8 +13,13 @@ import java.nio.file.StandardCopyOption;
  * @author: Heng Gao
  * @date: 29/03/2022 22:33
  **/
+@Deprecated
 class FileUploadUtil {
 
+
+    // folder-save, naive ways
+    // this is not in use now.
+    // save a file to the folder under this project
     public static void saveFile(String uploadDir, String fileName,
                                 MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);

@@ -21,9 +21,11 @@ public class ProjectServiceImpl implements ProjectService{
     @Override
     public Project addProject(@Valid Project project) {
 
+        // validate title duplication
         if(projectRepository.existsByTitle(project.getTitle())) {
             throw new RuntimeException("project exist");
         }
+
 
         return projectRepository.save(project);
     }

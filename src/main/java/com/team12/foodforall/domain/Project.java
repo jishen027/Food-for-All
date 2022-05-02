@@ -23,7 +23,8 @@ public class Project {
     @NotNull(message = "content is necessary")
     String content;
 
-    @Column(name = "img")
+    @Lob
+    @Column(length = Integer.MAX_VALUE, name = "img")
     String img;  // '/Foodforall.jpeg',
 
     int achievedmeals;

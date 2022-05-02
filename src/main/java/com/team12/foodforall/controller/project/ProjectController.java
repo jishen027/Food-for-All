@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Base64;
 
 /**
  * @author: Heng Gao
@@ -29,6 +28,9 @@ import java.util.Objects;
  **/
 @Controller
 public class ProjectController {
+
+
+    private static String data_src;
 
     private final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
@@ -87,20 +89,13 @@ public class ProjectController {
     public String saveProject(Model model, Project project,
                               BindingResult error, @RequestParam("img") MultipartFile file) throws IOException {
 
-
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-        project.setImg(fileName);
+        String img = Base64.getEncoder().encodeToString(file.getBytes());
+        project.setImg(img); // img in String
 
         // V2 retrieve all data from
         User user = userService.findUserByEmail("fuck@owner.com");
         project.setUser(user);
-
         Project savedProject = projectService.addProject(project);
-
-
-        String uploadDir = "project_pppp/" + savedProject.getId();
-
-        FileUploadUtil.saveFile(uploadDir, fileName, file);
 
 
         return "redirect:/projects";
