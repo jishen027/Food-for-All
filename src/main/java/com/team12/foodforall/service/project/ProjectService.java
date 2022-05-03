@@ -3,7 +3,7 @@ package com.team12.foodforall.service.project;
 import com.team12.foodforall.domain.Project;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,9 +20,9 @@ public interface ProjectService {
 
     int countProjects();
 
-    int countTotalRevenue();
+    double countTotalRevenue();
 
     int countCompletedProjectNumber();
 
-    Map<Project, Float> getToalRevenueForAllProjects();
+    List<Project> getToalRevenueForAllProjects();
 }

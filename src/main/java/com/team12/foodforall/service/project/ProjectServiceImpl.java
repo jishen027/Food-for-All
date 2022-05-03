@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * @author: Heng Gao
@@ -44,8 +42,8 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public int countTotalRevenue() {
-        return projectRepository.findAll().stream().mapToInt(p-> (int) (p.getAchievedmeals() * p.getPrice())).sum();
+    public double countTotalRevenue() {
+        return projectRepository.findAll().stream().mapToDouble(Project::getCurrentRevenue).sum();
     }
 
     @Override
@@ -54,8 +52,8 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public Map<Project, Float> getToalRevenueForAllProjects() {
-        return projectRepository.findAll().stream().collect(Collectors.toMap(Function.identity(),Project::getTotalRevenue));
+    public List<Project> getToalRevenueForAllProjects() {
+        return projectRepository.findAll();
     }
 
 }

@@ -13,6 +13,7 @@ CREATE TABLE projects
     img           CLOB,
     achievedmeals INT,
     targetmeals   INT,
+    current_revenue DOUBLE,
     progress      FLOAT,
     position_name VARCHAR(255),
     lat           FLOAT,
