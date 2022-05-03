@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author: Heng Gao
@@ -34,4 +37,32 @@ public class ProjectServiceImpl implements ProjectService{
     public Optional<Project> findById(Long id) {
         return projectRepository.findById(id);
     }
+
+    @Override
+    public int countProjects() {
+        return projectRepository.findAll().size();
+    }
+
+    @Override
+    public int countTotalRevenue() {
+        return projectRepository.findAll().stream().mapToInt(p-> (int) (p.getAchievedmeals() * p.getPrice())).sum();
+    }
+
+    @Override
+    public int countCompletedProjectNumber() {
+        return (int) projectRepository.findAll().stream().filter(Project::isCompleted).count();
+    }
+
+    @Override
+    public Map<Long, Float> getAllProjectRevenue() {
+        return projectRepository.findAll().stream().collect(Collectors.toMap(Project::getId,Project::getTotalRevenue));
+    }
+
+    @Override
+    public Map<Long, Float> getAverageRevenueList() {
+        //TODO: do we need avg List?
+        return new HashMap<Long,Float>();
+    }
+
+
 }

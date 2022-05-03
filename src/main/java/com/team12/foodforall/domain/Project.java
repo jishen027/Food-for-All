@@ -39,7 +39,7 @@ public class Project {
 
     Float Lng; // <12.22, 23.55>
 
-    String price; //'8.99',
+    Float price; //'8.99',
 
     String currency; //"$"
 
@@ -47,4 +47,15 @@ public class Project {
     @JoinColumn(name = "user_id")
     User user;
 
+    public boolean isCompleted(){
+        return this.achievedmeals == this.targetmeals;
+    }
+
+    public float getTotalRevenue(){
+        if(this.getAchievedmeals() == 0){
+            return 0;
+        }
+
+        return this.getAchievedmeals() * this.getPrice();
+    }
 }

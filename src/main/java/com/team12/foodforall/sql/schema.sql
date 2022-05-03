@@ -10,18 +10,19 @@ CREATE TABLE projects
     id            BIGINT AUTO_INCREMENT NOT NULL,
     title         VARCHAR(255),
     content       VARCHAR(255),
-    img           BLOB,
+    img           CLOB,
     achievedmeals INT,
     targetmeals   INT,
     progress      FLOAT,
     position_name VARCHAR(255),
     lat           FLOAT,
     lng           FLOAT,
-    price         VARCHAR(255),
+    price         FLOAT,
     currency      VARCHAR(255),
     user_id       BIGINT,
     CONSTRAINT pk_projects PRIMARY KEY (id)
 );
+
 
 
 CREATE TABLE users
