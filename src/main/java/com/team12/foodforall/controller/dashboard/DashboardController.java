@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author: Heng Gao
@@ -22,7 +22,11 @@ public class DashboardController {
     ProjectService projectService;
 
     @RequestMapping("/dashboard-graphs")
-    public String dashboardGraphs(){
+    public String dashboardGraphs(Model model){
+        DashboardData data = getData();
+
+        model.addAttribute("dashboardData", data);
+        
         return "dashboard-graphs";
     }
 
@@ -33,8 +37,7 @@ public class DashboardController {
     }
 
 
-    @RequestMapping("api/dashboard/getData")
-    @ResponseBody
+
     DashboardData getData(){
         DashboardData data = new DashboardData();
 
