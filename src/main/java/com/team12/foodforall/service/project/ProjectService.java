@@ -24,7 +24,5 @@ public interface ProjectService {
 
     int countCompletedProjectNumber();
 
-    Map<Long, Float> getAllProjectRevenue();
-
-    Map<Long, Float> getAverageRevenueList();
+    Map<Project, Float> getToalRevenueForAllProjects();
 }

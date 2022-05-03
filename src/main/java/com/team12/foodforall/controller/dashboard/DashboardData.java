@@ -1,5 +1,6 @@
 package com.team12.foodforall.controller.dashboard;
 
+import com.team12.foodforall.domain.Project;
 import lombok.Data;
 
 import java.util.Map;
@@ -13,7 +14,6 @@ public class DashboardData {
     int totalRevenue;
     int numOfProjects;
     int numOfCompletedProjects;
-    Map<Long,Float> revenueList;
-    Map<Long,Float> averageRevueList;
+    Map<Project,Float> revenueList;
 }
 

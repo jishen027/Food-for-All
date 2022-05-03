@@ -4,22 +4,34 @@ import com.team12.foodforall.service.project.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author: Heng Gao
  * @date: 02/05/2022 22:44
  **/
 
-@RestController
+@Controller
 public class DashboardController {
 
     private final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
     @Autowired
     ProjectService projectService;
+
+    @RequestMapping("/dashboard-graphs")
+    public String dashboardGraphs(){
+        return "dashboard-graphs";
+    }
+
+
+    @RequestMapping("/dashboard-projects")
+    public String dashboardProjects(){
+        return "dashboard-projects";
+    }
+
 
     @RequestMapping("api/dashboard/getData")
     @ResponseBody
@@ -29,8 +41,7 @@ public class DashboardController {
         data.setNumOfProjects(projectService.countProjects());
         data.setTotalRevenue(projectService.countTotalRevenue());
         data.setNumOfCompletedProjects(projectService.countCompletedProjectNumber());
-        data.setRevenueList(projectService.getAllProjectRevenue());
-        data.setAverageRevueList(projectService.getAverageRevenueList());
+        data.setRevenueList(projectService.getToalRevenueForAllProjects());
 
         logger.info("Counting projects:" + projectService.countProjects());
 

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -54,15 +54,8 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public Map<Long, Float> getAllProjectRevenue() {
-        return projectRepository.findAll().stream().collect(Collectors.toMap(Project::getId,Project::getTotalRevenue));
+    public Map<Project, Float> getToalRevenueForAllProjects() {
+        return projectRepository.findAll().stream().collect(Collectors.toMap(Function.identity(),Project::getTotalRevenue));
     }
-
-    @Override
-    public Map<Long, Float> getAverageRevenueList() {
-        //TODO: do we need avg List?
-        return new HashMap<Long,Float>();
-    }
-
 
 }
