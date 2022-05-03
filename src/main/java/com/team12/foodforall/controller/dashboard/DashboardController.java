@@ -26,7 +26,7 @@ public class DashboardController {
         DashboardData data = getData();
 
         model.addAttribute("dashboardData", data);
-        
+
         return "dashboard-graphs";
     }
 
@@ -50,4 +50,5 @@ public class DashboardController {
 
         return data;
     }
+
 }

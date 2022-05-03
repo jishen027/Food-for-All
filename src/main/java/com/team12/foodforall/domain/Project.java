@@ -36,6 +36,8 @@ public class Project {
 
     int targetmeals;
 
+    double currentRevenue;
+
     float progress; //60,
 
     String positionName; // 'UK',
@@ -56,12 +58,12 @@ public class Project {
         return this.achievedmeals == this.targetmeals;
     }
 
-    public float getTotalRevenue(){
+    public void updateTotalRevenue(){
         if(this.getAchievedmeals() == 0){
-            return 0;
+            return;
         }
 
-        return this.getAchievedmeals() * this.getPrice();
+        currentRevenue = this.getAchievedmeals() * this.getPrice();
     }
 
     @Override
