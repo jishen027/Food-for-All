@@ -29,18 +29,20 @@ public class RegisterForm {
     @NotEmpty(message = "lastname is mandatory")
     private String lastName;
 
-    @Size(min = 1, message = "charity name should have at least 1 characters")
-    @NotEmpty(message = "charityName is mandatory")
+    @Size(min = 1, max = 18, message = "Charity name has length between [1,18]")
+    @NotEmpty(message = "Charity Name is mandatory")
     private String charityName;
 
     @Email
     @NotEmpty(message = "Email is mandatory")
     private String email;
 
+
     @Size(min = 8, message = "password should have at least 8 characters")
     @Size(max = 16, message = "password should have at most 16 characters")
     @NotEmpty(message = "Password is mandatory")
     private String password;
+
 
     @Size(min = 8, message = "confirmedPassword should match password")
     @Size(max = 16, message = "confirmedPassword should match password")

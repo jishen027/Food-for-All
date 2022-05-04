@@ -1,21 +1,81 @@
 package com.team12.foodforall.domain;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @author: Heng Gao
  * @date: 22/03/2022 11:59
  **/
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Entity(name="projects")
 public class Project {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title")
     String title;
+
+    @Column(name = "content")
+    @NotNull(message = "content is necessary")
+    String content;
+
+    @Lob
+    @Column(length = Integer.MAX_VALUE, name = "img")
+    String img;  // '/Foodforall.jpeg',
+
+    int achievedmeals;
+
+    int targetmeals;
+
+    double currentRevenue;
+
+    float progress; //60,
+
+    String positionName; // 'UK',
+
+    Float Lat;
+
+    Float Lng; // <12.22, 23.55>
+
+    Float price; //'8.99',
+
+    String currency; //"$"
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
+
+    public boolean isCompleted(){
+        return this.achievedmeals == this.targetmeals;
+    }
+
+    public void updateTotalRevenue(){
+        if(this.getAchievedmeals() == 0){
+            return;
+        }
+
+        currentRevenue = this.getAchievedmeals() * this.getPrice();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Project project = (Project) o;
+        return id != null && Objects.equals(id, project.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
