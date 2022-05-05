@@ -50,15 +50,9 @@
 								<input type="text" name="positionName" th:fields="*{positionName}" id="positionName"
 								       class="form-control" placeholder="Country Name">
 							</div>
-
-							<!--              <div class="form-group">-->
-							<!--                <label for="charityName" style="color:#198754;">Charity Name</label><br>-->
-							<!--                <b type="text" th:text="${project.user.charityName}" id="charityName" class="form-control" >Charity Name</b>-->
-							<!--              </div>-->
-
 							<div class="form-group">
 								<label for="price" style="color:#198754;">Price per Meal</label><br>
-								<input type="number" name="price" th:fields="*{price}" id="price" class="form-control"
+								<input type="number" step="0.01" name="price" th:fields="*{price}" id="price" class="form-control"
 								       placeholder="Price per meal">
 							</div>
 							<div class="form-group">

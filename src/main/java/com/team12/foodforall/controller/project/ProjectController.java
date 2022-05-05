@@ -95,7 +95,7 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
-    @RequestMapping("/detail")
+    @GetMapping("/projects/{id}")
     public String projectDetail(){
         return "project_detail";
     }
