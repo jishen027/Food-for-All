@@ -24,7 +24,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", columnDefinition = "VARCHAR(255) default title")
     String title;
 
     @Column(name = "content")
@@ -35,20 +35,28 @@ public class Project {
     @Column(length = Integer.MAX_VALUE, name = "img")
     String img;  // '/Foodforall.jpeg',
 
+    @Column(columnDefinition = "INT default 0")
     Integer achievedmeals;
 
+    @NotNull(message = "target meals is necessary")
+    @Column(columnDefinition = "INT default 0")
     Integer targetmeals;
 
+    @Column(columnDefinition = "DOUBLE default 0")
     Double currentRevenue;
 
+    @Column(columnDefinition = "FLOAT default 0")
     Float progress; //60,
 
+    @NotNull(message = " meals is necessary")
     String positionName; // 'UK',
 
     Float Lat;
 
     Float Lng; // <12.22, 23.55>
 
+    @NotNull
+    @Column(columnDefinition = "FLOAT default 0")
     Float price; //'8.99',
 
     String currency; //"$"

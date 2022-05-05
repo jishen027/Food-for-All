@@ -5,7 +5,6 @@ import com.team12.foodforall.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ public class ProjectServiceImpl implements ProjectService{
     ProjectRepository projectRepository;
 
     @Override
-    public Project addProject(@Valid Project project) {
+    public Project addProject(Project project) {
 
         // validate title duplication
         if(projectRepository.existsByTitle(project.getTitle())) {
@@ -43,7 +42,7 @@ public class ProjectServiceImpl implements ProjectService{
 
     @Override
     public double countTotalRevenue() {
-        return projectRepository.findAll().stream().mapToDouble(Project::getCurrentRevenue).sum();
+        return projectRepository.findAll().stream().mapToDouble(p->p.getCurrentRevenue().doubleValue()).sum();
     }
 
     @Override

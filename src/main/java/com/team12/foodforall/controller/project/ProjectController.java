@@ -8,6 +8,7 @@ import com.team12.foodforall.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -48,12 +50,9 @@ public class ProjectController {
 
         ArrayList<Project> projectList = (ArrayList<Project>) projectRepo.findAll();
 
-        // display projects if there are enough in db
-        if(projectList.size() > 3){
-            int end = (projectList.size() >= 3) ? 3 : 1;
-            projectList = (ArrayList<Project>) projectList.subList(0,2);
-            model.addAttribute("projects",projectList);
-        }
+
+        model.addAttribute("projects", projectList);
+
         // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
         return "index";
     }
@@ -78,7 +77,7 @@ public class ProjectController {
 
     // router for return the projects views
     @PostMapping("/projects")
-    public String saveProject(Model model, Project project,
+    public String saveProject(Model model, @Valid Project project,
                               BindingResult error, @RequestParam("img") MultipartFile file) throws IOException {
 
 //      TODO :  Service.();
@@ -89,7 +88,7 @@ public class ProjectController {
         project.setImg(img); // img in String
 
         // V2 retrieve all data from
-        User user = userService.findUserByEmail("fuck@owner.com");
+        User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         project.setUser(user);
         Project savedProject = projectService.addProject(project);
 
