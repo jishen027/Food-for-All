@@ -27,7 +27,7 @@
 										<p class="card-text">{{project.content.slice(0,150)}}...</p>
 								</div>
 								<div class="card-footer bg-white border-0">
-										<a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+										<a :href="'/projects/'+project.id" class="btn btn-primary stretched-link">Donate Now</a>
 								</div>
 						</div>
 				</div>
