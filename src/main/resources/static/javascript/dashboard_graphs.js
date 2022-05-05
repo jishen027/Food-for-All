@@ -2,9 +2,8 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-05 14:28:47
+ * @Last Modified time: 2022-05-05 15:59:53
  */
-console.log(session)
 
 var app = new Vue({
   el: '#app',
@@ -27,11 +26,12 @@ var app = new Vue({
   }
 })
 
+
 function ProcessPieChartData(dashboardData) {
   var projects = dashboardData.revenueList
   var dataList = []
   projects.forEach(project => {
-    var data = { value: project.revenue, name: project.title }
+    var data = { value: project.currentRevenue, name: project.title }
     dataList.push(data);
   });
 
@@ -39,11 +39,13 @@ function ProcessPieChartData(dashboardData) {
 }
 
 function RenderPieCharts(data) {
+  console.log("Pie", data)
   // pie chart
   var pieDom = document.getElementById("pieChart");
   var myPieChart = echarts.init(pieDom);
   // var app = {};
   var option;
+
   var pieData = data
 
   option = {
@@ -80,22 +82,47 @@ function RenderPieCharts(data) {
 async function DrawPieChart() {
   var data = await ProcessPieChartData(dashboardData)
   await RenderPieCharts(data)
-  
+  var lineData = await ProcessPieChartData(dashboardData)
+  linexAxis = []
+  lineyAxis = []
+
+  lineData.forEach(data => {
+    linexAxis.push(data.name)
+    lineyAxis.push(data.value)
+  });
+
+  await RenderLineChart(linexAxis, lineyAxis)
+
+}
+
+async function DrawLineChart() {
+  var lineData = await ProcessPieChartData(dashboardData)
+  linexAxis = []
+  lineyAxis = []
+
+  lineData.forEach(data => {
+    linexAxis.push(data.name)
+    lineyAxis.push(data.value)
+  });
+
+  await RenderLineChart(linexAxis, lineyAxis)
 }
 
 function ProcessLineChartData() {
+
   var lineData = []
-  
+
   return lineData;
 }
 
 
 
-function RenderLineChart(data) {
+function RenderLineChart(x, y) {
   // graph settings
   var lineDom = document.getElementById("lineChart");
   var myLineChart = echarts.init(lineDom);
-  var lineData = data
+  var XAxis = x
+  var YAxis = y
 
   // var app = {};
   var option;
@@ -105,14 +132,14 @@ function RenderLineChart(data) {
     },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      data: XAxis
     },
     yAxis: {
       type: 'value'
     },
     series: [
       {
-        data: [150, 230, 224, 218, 135, 147, 260],
+        data: YAxis,
         type: 'line'
       }
     ]
@@ -123,7 +150,9 @@ function RenderLineChart(data) {
 }
 
 function init() {
+  console.log(("dashBoard: ", dashboardData))
   DrawPieChart();
+  DrawLineChart();
 }
 window.onload = init
 

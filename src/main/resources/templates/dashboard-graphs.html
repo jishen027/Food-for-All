@@ -73,20 +73,12 @@
             </div>
         </div>
     </div>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var dashboardData = /*[[${dashboardData}]]*/'default';
-        console.log((dashboardData))
-        /*]]>*/
-    </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.1/dist/echarts.min.js"></script>
-
     <!--加载session数据-->
     <script th:inline="javascript">
         /*<![CDATA[*/
         var session = /*[[${session}]]*/ 'default';
-        var projects = /*[[${projects}]]*/'default';
-        console.log((projects))
+        var dashboardData = /*[[${dashboardData}]]*/'default';
         /*]]>*/
     </script>
     <script src="/javascript/dashboard_graphs.js"></script>
