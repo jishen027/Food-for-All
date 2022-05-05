@@ -43,7 +43,10 @@
                     Charity: {{project.charity}}
                   </li>
                   <li class="list-group-item">
-                    <p>price: <small class="display-6 text-primary fw-bold">${{project.price}}/meal</small></p>
+                    <p>price: <small class="display-6 text-primary fw-bold" id="price">{{project.price}}</small>
+                    <small class="display-6 text-primary fw-bold">/meal</small>
+                    </p>
+                    <p hidden id="currency">{{project.currency}}</p>
                   </li>
                 </ul>
               </div>
@@ -67,6 +70,8 @@
     <!-- insert footer from thymeleaf fragments -->
     <div th:insert="~{fragments/footer :: footer}"></div>
   </div>
+  <script src="/javascript/money.js"></script>
+  <script src="/javascript/currencyEX.js"></script>
   <script src="/javascript/project_detail.js"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QZ8Ze04-faOyB8kHs0rb9bd6Cmn7NCU&callback=initMap&v=weekly"

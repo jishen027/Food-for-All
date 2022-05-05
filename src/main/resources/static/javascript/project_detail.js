@@ -19,7 +19,8 @@ var app = new Vue({
         positionName: 'UK',
         positionLatLng: '',
         charity: 'UK-Charity',
-        price: 8.99
+        price: 8.99,
+        currency: 'USD'
       }
     }
   },

@@ -23,6 +23,7 @@ var app = new Vue({
           positionLatLng: '',
           charity: 'UK-Charity',
           price: 8.99,
+          currency: 'GBP',
         },
         {
           id: 2,
@@ -33,7 +34,8 @@ var app = new Vue({
           positionName: 'Asia',
           positionLatLng: '',
           charity: 'Asia-Charity',
-          price: 7.99,
+          price: 5000.00,
+          currency: 'JPY',
         },
         {
           id: 3,
@@ -45,6 +47,7 @@ var app = new Vue({
           positionLatLng: '',
           charity: 'UK-Charity',
           price: 6.00,
+          currency: 'GBP',
         }
       ]
     }
