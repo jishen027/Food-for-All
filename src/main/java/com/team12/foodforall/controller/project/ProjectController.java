@@ -46,22 +46,15 @@ public class ProjectController {
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
 
-        Project p1 = new Project();
-        p1.setId(101L);
-        p1.setTitle("P1 title1");
-
-        Project p2 = new Project();
-        p2.setId(102L);
-
-        p2.setTitle("P2 title2");
+        ArrayList<Project> projectList = (ArrayList<Project>) projectRepo.findAll(); ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
 
 
-
-        ArrayList<Project> projectList = new ArrayList<Project>();
-        projectList.add(p1);
-        projectList.add(p2);
-
-        model.addAttribute("projects",projectList);
+        // display projects if there are enough in db
+        if(projectList.size() > 3){
+            int end = (projectList.size() >= 3) ? 3 : 1;
+            projectList = (ArrayList<Project>) projectList.subList(0,2);
+            model.addAttribute("projects",projectList);
+        }
         // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
         return "index";
     }

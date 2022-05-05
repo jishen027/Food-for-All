@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
@@ -16,21 +17,22 @@ import java.util.Objects;
  * @date: 27/03/2022 03:05
  **/
 @Service
+@Transactional(readOnly = true)
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
-        if(Objects.isNull(user)){
-            throw new RuntimeException("Invalida username or password");
-        }
+		User user = userRepository.findByEmail(email);
+		if (Objects.isNull(user)) {
+			throw new UsernameNotFoundException(user.getEmail());
+		}
 
-        //TODO check roles:从数据库中查询权限信息，并假如到LoginUser中去
+		//TODO check roles:从数据库中查询权限信息，并假如到LoginUser中去
 
-        return new LoginUser(user);
-    }
+		return new LoginUser(user);
+	}
 }
