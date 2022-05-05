@@ -5,8 +5,6 @@ import com.team12.foodforall.domain.User;
 import com.team12.foodforall.repository.ProjectRepository;
 import com.team12.foodforall.service.project.ProjectService;
 import com.team12.foodforall.service.user.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,11 +25,6 @@ import java.util.Base64;
  **/
 @Controller
 public class ProjectController {
-
-
-    private static String data_src;
-
-    private final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     @Autowired
     UserService userService;
@@ -89,6 +82,9 @@ public class ProjectController {
         project.setUser(user);
         Project savedProject = projectService.addProject(project);
 
+        System.out.println(savedProject);
+        System.out.println(project);
+        System.out.println("saving project");
         return "redirect:/projects";
     }
 

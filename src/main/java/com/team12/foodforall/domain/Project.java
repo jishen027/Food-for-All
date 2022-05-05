@@ -56,7 +56,7 @@ public class Project {
     Float Lng; // <12.22, 23.55>
 
     @NotNull
-    @Column(columnDefinition = "FLOAT default 0" , insertable = false)
+    @Column(columnDefinition = "FLOAT default 0")
     Float price; //'8.99',
 
     String currency; //"$"
