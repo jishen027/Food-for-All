@@ -12,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -96,10 +93,13 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/{id}")
-    public String projectDetail(){
+    public String projectDetail(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
         return "project_detail";
     }
-
 }
 
 
