@@ -1,6 +1,9 @@
 package com.team12.foodforall.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -32,13 +35,13 @@ public class Project {
     @Column(length = Integer.MAX_VALUE, name = "img")
     String img;  // '/Foodforall.jpeg',
 
-    int achievedmeals;
+    Integer achievedmeals;
 
-    int targetmeals;
+    Integer targetmeals;
 
-    double currentRevenue;
+    Double currentRevenue;
 
-    float progress; //60,
+    Float progress; //60,
 
     String positionName; // 'UK',
 
@@ -63,7 +66,7 @@ public class Project {
             return;
         }
 
-        currentRevenue = this.getAchievedmeals() * this.getPrice();
+        currentRevenue = Double.valueOf(this.getAchievedmeals() * this.getPrice());
     }
 
     @Override

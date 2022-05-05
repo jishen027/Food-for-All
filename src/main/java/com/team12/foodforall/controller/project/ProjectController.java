@@ -46,8 +46,7 @@ public class ProjectController {
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
 
-        ArrayList<Project> projectList = (ArrayList<Project>) projectRepo.findAll(); ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
-
+        ArrayList<Project> projectList = (ArrayList<Project>) projectRepo.findAll();
 
         // display projects if there are enough in db
         if(projectList.size() > 3){
