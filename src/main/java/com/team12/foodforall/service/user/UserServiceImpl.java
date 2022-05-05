@@ -36,8 +36,7 @@ public class UserServiceImpl implements UserService{
         User queryResult = userRepository.findByEmail(registerForm.getEmail());
         if(queryResult != null){
             //TODO: replace exception
-            System.err.println("account already exists");
-            throw new RuntimeException();
+            throw new RuntimeException("account already exists");
         }
         // TODO: more validation
 

@@ -1,45 +1,47 @@
 <html lang="en">
 
 <head>
-    <!-- insert head from thymeleaf header fragment -->
-    <div th:insert="~{fragments/header :: head}"></div>
+	<!-- insert head from thymeleaf header fragment -->
+	<div th:insert="~{fragments/header :: head}"></div>
 </head>
 
 <body>
 
 <div id="app">
-    <!-- insert navbar from thymeleaf nav fragment -->
-    <div th:insert="~{fragments/navbar :: nav}"></div>
-    <section id="projects">
-        <div class="container">
-            <p class="mt-5 text-white"> top </p>
-            <input v-model="term" class="form-control form-control-dark w-100" type="text"
-                   placeholder="Search the project" aria-label="Search">
-            <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4">
+	<!-- insert navbar from thymeleaf nav fragment -->
+	<div th:insert="~{fragments/navbar :: nav}"></div>
 
-                <!--     For each project     -->
+	<section id="projects">
+		<div class="container">
+			<p class="mt-5 text-white"> top </p>
+			<input v-model="term" class="form-control form-control-dark w-100" type="text"
+			       placeholder="Search the project" aria-label="Search">
+			<div class="row row-cols-1 row-cols-sm-3 row-cols-md-4">
 
-                <div class="col" th:each="project: ${projects}">
-                    <div class="card m-2 h-100">
-                        <img th:src="*{'data:image/*;base64,' + {project.img}}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${project.title}"></h5>
-<!--                            <p class="card-text" th:text="${project.content.slice(0,150)}"></p>-->
-                            <p class="card-text" th:text="${project.content}"></p>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- insert footer from thymeleaf fragments -->
-    <div th:insert="~{fragments/footer :: footer}"></div>
+				<!--     For each project     -->
+
+				<div class="col" th:each="project: ${projects}">
+					<div class="card m-2 h-100">
+						<img th:src="*{'data:image/*;base64,' + {project.img}}" class="card-img-top" >
+						<div class="card-body">
+							<h5 class="card-title" th:text="${project.title}"></h5>
+							<!--                            <p class="card-text" th:text="${project.content.slice(0,150)}"></p>-->
+							<p class="card-text" th:text="${project.content}"></p>
+						</div>
+						<div class="card-footer bg-white border-0">
+							<a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- insert footer from thymeleaf fragments -->
+	<div th:insert="~{fragments/footer :: footer}"></div>
 </div>
 <script th:inline="javascript">
     /*<![CDATA[*/
+    var session = /*[[${session}]]*/ 'default';
     var projects = /*[[${projects}]]*/'default';
     console.log((projects))
     /*]]>*/

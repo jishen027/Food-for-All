@@ -2,8 +2,9 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-03 17:05:18
+ * @Last Modified time: 2022-05-05 14:28:47
  */
+console.log(session)
 
 var app = new Vue({
   el: '#app',

@@ -1,6 +1,9 @@
 package com.team12.foodforall.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -21,7 +24,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", columnDefinition = "VARCHAR(255) default title")
     String title;
 
     @Column(name = "content")
@@ -32,20 +35,28 @@ public class Project {
     @Column(length = Integer.MAX_VALUE, name = "img")
     String img;  // '/Foodforall.jpeg',
 
-    int achievedmeals;
+    @Column(columnDefinition = "INT default 0")
+    Integer achievedmeals;
 
-    int targetmeals;
+    @NotNull(message = "target meals is necessary")
+    @Column(columnDefinition = "INT default 0")
+    Integer targetmeals;
 
-    double currentRevenue;
+    @Column(columnDefinition = "DOUBLE default 0")
+    Double currentRevenue;
 
-    float progress; //60,
+    @Column(columnDefinition = "FLOAT default 0")
+    Float progress; //60,
 
+    @NotNull(message = " meals is necessary")
     String positionName; // 'UK',
 
     Float Lat;
 
     Float Lng; // <12.22, 23.55>
 
+    @NotNull
+    @Column(columnDefinition = "FLOAT default 0")
     Float price; //'8.99',
 
     String currency; //"$"
@@ -63,7 +74,7 @@ public class Project {
             return;
         }
 
-        currentRevenue = this.getAchievedmeals() * this.getPrice();
+        currentRevenue = Double.valueOf(this.getAchievedmeals() * this.getPrice());
     }
 
     @Override

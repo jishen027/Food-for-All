@@ -1,9 +1,10 @@
 /*
- * @Author: Jipu Li 
- * @Date: 2022-03-29 16:57:50 
- * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-29 16:58:58
+ * @Author: Abhishek Muttanahalli Nagesh
+ * @Date: 2022-03-2
+ * @Last Modified by: Abhihek Muttanahalli Nagesh
+ * @Last Modified :
  */
+console.log(session)
 
 var app = new Vue({
     el: '#app',
@@ -13,8 +14,8 @@ var app = new Vue({
             loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated,
             tagActives: {
                 projects: false,
-                graphs: false,
-                settings: true,
+                graphs: true,
+                settings: false,
                 profiles: false,
             }
         }
