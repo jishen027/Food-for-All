@@ -19,7 +19,7 @@
       <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
           <div class="h-100">
-            <img src="/banner.jpg" class="img-fluid" alt="...">
+            <img :src="'data:image/*;base64,' + project.img" class="img-fluid" alt="...">
           </div>
         </div>
         <div class="col">
@@ -67,6 +67,14 @@
     <!-- insert footer from thymeleaf fragments -->
     <div th:insert="~{fragments/footer :: footer}"></div>
   </div>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    // TODO: null excpetion when session is not set?
+    var session = /*[[${session}]]*/ 'default';
+    var project = /*[[${project}]]*/'default';
+    console.log(project)
+    /*]]>*/
+</script>
   <script src="/javascript/project_detail.js"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5QZ8Ze04-faOyB8kHs0rb9bd6Cmn7NCU&callback=initMap&v=weekly"
