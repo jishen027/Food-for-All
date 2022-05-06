@@ -88,6 +88,8 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+
+    //Get a project detail
     @GetMapping("/projects/{id}")
     public String projectDetail(@PathVariable("id") Long id, Model model){
         Project project = projectService.findById(id)
@@ -95,6 +97,28 @@ public class ProjectController {
 
         model.addAttribute("project", project);
         return "project_detail";
+    }
+
+    //Delete a project detail
+    @DeleteMapping("/projects/{id}")
+    public String deleteDetail(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
+        projectRepo.delete(project);
+
+        return "redirect:/projects";
+    }
+
+    //Update a project detail
+    @GetMapping("/projects/update/{id}")
+    public String updateProject(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
+        return "editProject";
     }
 }
 
