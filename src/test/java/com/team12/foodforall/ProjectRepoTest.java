@@ -8,6 +8,7 @@ import com.team12.foodforall.service.project.ProjectService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public class ProjectRepoTest {
     @Autowired
     ProjectService projectService;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     @Test
     void TestFindAll(){
         assertThat(projectRepo).isNotNull();
@@ -42,9 +46,6 @@ public class ProjectRepoTest {
         projectLists = projectRepo.findAll();
         assertThat(projectLists).isNotNull();
         System.out.println(projectLists.size());
-
-
-
 
         // store 2 random projects
 
@@ -58,7 +59,7 @@ public class ProjectRepoTest {
             owner.setFirstName("jack");
             owner.setLastName("westwood");
             owner.setEmail("a@a.com");// this needs to be unique
-            owner.setPassword("asdasdasd");
+            owner.setPassword(encoder.encode("asdasdasd"));
             owner.setCharityName("UK abc Charity");
         } else{ // found , then use it
             owner = result;

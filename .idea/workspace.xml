@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c2fc27db-7a69-4c6c-8f22-19f56f60fc94.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c2fc27db-7a69-4c6c-8f22-19f56f60fc94.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,10 +196,16 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="charity_dashboard" />
+                        <option value="dashboard_backend" />
                       </list>
                     </value>
                   </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="153" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="122" />
                 </map>
               </option>
             </State>
@@ -219,7 +221,8 @@
     <MESSAGE value="[add] add a addProject button on projects.html" />
     <MESSAGE value="[fix] minor fix" />
     <MESSAGE value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
+    <MESSAGE value="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
