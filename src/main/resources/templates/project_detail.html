@@ -18,8 +18,10 @@
       </div>
       <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
-          <div class="h-100">
-            <img :src="'data:image/*;base64,' + project.img" class="img-fluid" alt="...">
+          <div class="card">
+            <img :src="'data:image/*;base64,' + project.img" class="card-img">
+            <div class="card-img-overlay">
+            </div>
           </div>
         </div>
         <div class="col">
@@ -53,7 +55,6 @@
               <form th:action="@{'/projects/' + ${project.id}}" th:method="delete" >
                 <input type="submit" value="delete" class="btn btn-danger w-20"/>
               </form>
-
               <a th:href="@{/donate/(id=${project.id})}" class="btn btn-success w-20">Donate Now</a>
             </div>
           </div>
