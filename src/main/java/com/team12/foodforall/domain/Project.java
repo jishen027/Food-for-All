@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,13 +19,14 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@DynamicInsert
 @Entity(name="projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", columnDefinition = "VARCHAR(255) default title")
+    @NotNull(message = "title is necessary")
     String title;
 
     @Column(name = "content")
@@ -35,28 +37,27 @@ public class Project {
     @Column(length = Integer.MAX_VALUE, name = "img")
     String img;  // '/Foodforall.jpeg',
 
-    @Column(columnDefinition = "INT default 0")
+
+    @Column(nullable = false,columnDefinition = "INT default 0") // default value = 0 only no validation
     Integer achievedmeals;
 
-    @NotNull(message = "target meals is necessary")
-    @Column(columnDefinition = "INT default 0")
+    @NotNull(message = "target meals is necessary") // input validation + default value = 0 in db
     Integer targetmeals;
 
-    @Column(columnDefinition = "DOUBLE default 0")
+    @Column(nullable = false,columnDefinition = "DOUBLE default 0") // default value = 0 only no validation
     Double currentRevenue;
 
-    @Column(columnDefinition = "FLOAT default 0")
+    @Column(nullable = false, columnDefinition = "FLOAT default 0") // default value = 0 only no validation any number value will be set to 0
     Float progress; //60,
 
-    @NotNull(message = " meals is necessary")
+    @NotNull(message = " country is necessary")
     String positionName; // 'UK',
 
     Float Lat;
 
     Float Lng; // <12.22, 23.55>
 
-    @NotNull
-    @Column(columnDefinition = "FLOAT default 0")
+    @NotNull(message = "price is necessary")
     Float price; //'8.99',
 
     String currency; //"$"

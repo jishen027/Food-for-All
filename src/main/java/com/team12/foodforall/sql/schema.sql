@@ -8,22 +8,21 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE projects
 (
     id              BIGINT AUTO_INCREMENT NOT NULL,
-    title           VARCHAR(255) DEFAULT 'title',
+    title           VARCHAR(255),
     content         VARCHAR(255),
     img             CLOB,
-    achievedmeals   INT          DEFAULT 0,
-    targetmeals     INT          DEFAULT 0,
-    current_revenue DOUBLE       DEFAULT 0,
-    progress        FLOAT        DEFAULT 0,
+    achievedmeals   INT    DEFAULT 0      NOT NULL,
+    targetmeals     INT,
+    current_revenue DOUBLE DEFAULT 0      NOT NULL,
+    progress        FLOAT  DEFAULT 0      NOT NULL,
     position_name   VARCHAR(255),
     lat             FLOAT,
     lng             FLOAT,
-    price           FLOAT        DEFAULT 0,
+    price           FLOAT,
     currency        VARCHAR(255),
     user_id         BIGINT,
     CONSTRAINT pk_projects PRIMARY KEY (id)
 );
-
 
 
 CREATE TABLE users

@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] minor fix">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/project_edit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/editProject.html" afterDir="false" />
+    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c2fc27db-7a69-4c6c-8f22-19f56f60fc94.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c2fc27db-7a69-4c6c-8f22-19f56f60fc94.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +90,38 @@
       <recent name="$PROJECT_DIR$/src/main/resources/templates" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ProjectRepoTest.TestFindAll">
+    <configuration name="ProjectRepoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="foodForAll" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.team12.foodforall.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.team12.foodforall" />
+      <option name="MAIN_CLASS_NAME" value="com.team12.foodforall.ProjectRepoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectRepoTest.TestFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="foodForAll" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.team12.foodforall.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.team12.foodforall" />
+      <option name="MAIN_CLASS_NAME" value="com.team12.foodforall.ProjectRepoTest" />
+      <option name="METHOD_NAME" value="TestFindAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,6 +142,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.FoodForAllApplication" />
+      <item itemvalue="JUnit.ProjectRepoTest.TestFindAll" />
+      <item itemvalue="JUnit.ProjectRepoTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProjectRepoTest.TestFindAll" />
+        <item itemvalue="JUnit.ProjectRepoTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -175,7 +218,8 @@
     <MESSAGE value="[fix] remove insertable = false" />
     <MESSAGE value="[add] add a addProject button on projects.html" />
     <MESSAGE value="[fix] minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] minor fix" />
+    <MESSAGE value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
