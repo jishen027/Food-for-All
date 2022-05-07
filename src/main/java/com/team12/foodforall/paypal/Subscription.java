@@ -16,6 +16,6 @@ public class Subscription {
     private String productID;
     private String description;
     private String currency;
-    private Integer price;
+    private Float price;
 
 }

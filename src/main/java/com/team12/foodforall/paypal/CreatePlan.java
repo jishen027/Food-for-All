@@ -59,7 +59,7 @@ public class CreatePlan{
     }
 
     //Makes the yearly billing plan
-    public String makePlan(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
+    public String makePlan(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
         String name = String.format("Yearly %s", pName);
         String pID = projectID.toString();
@@ -83,7 +83,7 @@ public class CreatePlan{
     }
 
     //Makes the monthly billing plan
-    public String makeMonthly(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
+    public String makeMonthly(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
         String name = String.format("%s Monthly", pName);
         String pID = projectID.toString();
@@ -106,7 +106,7 @@ public class CreatePlan{
     }
 
     //Makes the quarterly billing plan
-    public String makeQuarterly(Long projectID, String productID, String curr, Integer price, String pName) throws IOException, PayPalRESTException {
+    public String makeQuarterly(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
         /**Retrieve following from database**/
         String name = String.format("%s Quarterly", pName);
         String pID = projectID.toString();
