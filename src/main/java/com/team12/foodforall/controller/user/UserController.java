@@ -24,33 +24,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/login")
-    public String showLoginPage(LoginForm loginForm) {
-        return "login";
-    }
-
-
-    @PostMapping("/login")
-    public String loginByEmail(@Valid LoginForm loginForm, BindingResult result, Model model, HttpSession session) {
-        System.out.println(loginForm);
-//        TODO: to implement
-        User user = userService.login(loginForm);
-
-//        TODO: error --> login failed, error detail thrown in the userService
-        if(user == null){
-            // login failed
-            return "login";
+    public String showLoginForm(LoginForm loginForm, HttpSession session, Model model, String loginError, String logout) {
+        if (loginError != null) {
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+        }
+        if (logout != null){
+            model.addAttribute("msg", "You have been logged out successfully.");
         }
 
-        session.setAttribute("loginStatus","true");
-
-        session.setAttribute("user", user);
-        session.setAttribute("userName","gh");
-        session.setAttribute("userId",101);
-        session.setAttribute("userRole","admin");
-
-        // TODO: success-> redirct to the correct page
-        return "index";
+        return "login";
     }
 
     @GetMapping("/register")

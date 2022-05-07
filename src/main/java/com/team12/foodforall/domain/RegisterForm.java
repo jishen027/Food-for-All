@@ -29,6 +29,10 @@ public class RegisterForm {
     @NotEmpty(message = "lastname is mandatory")
     private String lastName;
 
+    @Size(min = 1, message = "charity name should have at least 1 characters")
+    @NotEmpty(message = "charityName is mandatory")
+    private String charityName;
+
     @Email
     @NotEmpty(message = "Email is mandatory")
     private String email;

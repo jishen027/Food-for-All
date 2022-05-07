@@ -2,7 +2,6 @@ package com.team12.foodforall.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;

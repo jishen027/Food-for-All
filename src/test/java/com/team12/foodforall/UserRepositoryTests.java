@@ -1,6 +1,5 @@
 package com.team12.foodforall;
 
-import com.team12.foodforall.domain.Project;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import java.util.Set;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
@@ -19,9 +16,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
  * @date: 19/03/2022 22:48
  **/
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE )
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
-
 public class UserRepositoryTests {
 
     @Autowired
@@ -33,24 +29,18 @@ public class UserRepositoryTests {
     @Test
     public void testCreateUser() {
         User user = new User();
-        user.setId(123L);
         user.setEmail("ridsfassssf@gmail.com");
         user.setPassword("ravi2020");
+        user.setCharityName("abc charity");
         user.setFirstName("Ravi");
         user.setLastName("Kumar");
-        user.setCharityName("Test Project Name");
 
-        final Project project = new Project();
-        Set<Project> projects = Set.of(project);
-        user.setProjects(projects);
+        User savedUser = repo.save(user);
 
 
-        User savedUser = entityManager.persist(user);
-        User queryResult = repo.findByEmail(user.getEmail());
+        User existUser = entityManager.find(User.class, savedUser.getId());
 
-        assertThat(savedUser.getEmail()).isEqualTo(queryResult.getEmail());
-        }
+        assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
 
-
+    }
 }
-

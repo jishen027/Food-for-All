@@ -1,10 +1,10 @@
 package com.team12.foodforall.service.user;
 
-import com.team12.foodforall.domain.LoginForm;
 import com.team12.foodforall.domain.RegisterForm;
 import com.team12.foodforall.domain.User;
 import com.team12.foodforall.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +18,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Override
     public void deleteUserById(long id) {
@@ -39,39 +42,24 @@ public class UserServiceImpl implements UserService{
         // TODO: more validation
 
 
+        if(!registerForm.getPassword().equals(registerForm.getConfirmedPassword())){
+            throw new RuntimeException("Password not matched");
+        }
+
         //TODO: Encrypt Password
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        String encryptedPassword = encoder.encode(registerForm.getPassword());
 
         User user = new User();
-        user.setEmail(registerForm.getEmail());
         user.setFirstName(registerForm.getFirstName());
         user.setLastName(registerForm.getLastName());
-        user.setPassword(registerForm.getPassword());
         user.setCharityName(registerForm.getCharityName());
+        user.setEmail(registerForm.getEmail());
+        user.setPassword(encryptedPassword);
+
         return userRepository.save(user);
     }
 
 
-    //   TODO:v01- login by email
-    @Override
-    public User login(LoginForm loginForm) {
-        // check email format
-        // already done in controller
-
-        // check email exist
-        User exist = userRepository.findByEmail(loginForm.getEmail());
-
-        System.out.println(loginForm.getEmail());
-        System.out.println(loginForm.getPassword());
-        if(exist.getPassword().equals(loginForm.getPassword())){
-            return exist;
-        } else {
-            return null;
-        }
-
-
-    }
 
     @Override
     public Optional<User> findUserById(Long id) { return userRepository.findById(id);}
