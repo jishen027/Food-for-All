@@ -1,27 +1,28 @@
 <html lang="en">
 
 <head>
-	<!-- insert head from thymeleaf header fragment -->
-	<div th:insert="~{fragments/header :: head}"></div>
+    <!-- insert head from thymeleaf header fragment -->
+    <div th:insert="~{fragments/header :: head}"></div>
 </head>
+
 <body>
-<div id="app">
-	<!-- insert navbar from thymeleaf nav fragment -->
-	<div th:insert="~{fragments/navbar :: nav}"></div>
-	<!-- main image and intro text -->
-	<section id="intro">
-		<div class="container-lg">
-			<div class="row justify-content-center align-items-center mt-5">
-				<div class="col-md-5 text-center text-md-start">
-					<h1>
-						<div class="display-2 text-success">Food For All</div>
-						<div class="display-5 text-muted">Donate Food to the World</div>
-						<p class="lead my-4 text-muted">Globally, one in nine people are hungry or undernourished.
-							In
-							2020, 2.37 billion people did not have access to
-							enough safe and nutritious food.</p>
-					</h1>
-				</div>
+    <div id="app">
+        <!-- insert navbar from thymeleaf nav fragment -->
+        <div th:insert="~{fragments/navbar :: nav}"></div>
+        <!-- main image and intro text -->
+        <section id="intro">
+            <div class="container-lg">
+                <div class="row justify-content-center align-items-center mt-5">
+                    <div class="col-md-5 text-center text-md-start">
+                        <h1>
+                            <div class="display-2 text-success">Food For All</div>
+                            <div class="display-5 text-muted">Donate Food to the World</div>
+                            <p class="lead my-4 text-muted">Globally, one in nine people are hungry or undernourished.
+                                In
+                                2020, 2.37 billion people did not have access to
+                                enough safe and nutritious food.</p>
+                        </h1>
+                    </div>
 
                     <div class="col-md-5 text-center d-none d-md-block">
                         <img class="img-fluid" src="/banner01.jpg" alt="banner">
@@ -62,9 +63,10 @@
                 </div>
             </div>
         </section>
-        <!-- insert footer from thymeleaf fragments -->
-        <div th:insert="~{fragments/footer :: footer}"></div>
+
     </div>
+    <!-- insert footer from thymeleaf fragments -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
     <script th:inline="javascript">
         /*<![CDATA[*/
         var session = /*[[${session}]]*/ 'default';
