@@ -87,5 +87,10 @@ public class DonateController {
         return "redirect:/";
     }
 
+    @GetMapping("/email")
+    public String share(){
+        return "email";
+    }
+
 
 }

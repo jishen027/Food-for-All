@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <div th:insert="~{fragments/header :: head}"></div>
   <meta charset="UTF-8">
   <title>Payment Success</title>
 </head>
@@ -16,10 +14,12 @@
       <p style="font-size:20px;color:#5C5C5C;">Please note down your reference id for future reference</p>
       <p style="font-size:20px;color:#5C5C5C;">[[${paymentID}]]</p>
       <a href="/" class="btn btn-success">Return to Home</a>
+      <a href="/email" class="btn btn-success">Share</a>
       <br><br>
     </div>
 
   </div>
 </div>
+<div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>
