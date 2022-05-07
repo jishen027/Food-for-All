@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test">
+    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] fix currency default value">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/sql/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +240,8 @@
     <MESSAGE value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
     <MESSAGE value="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest" />
     <MESSAGE value="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test" />
+    <MESSAGE value="[fix] fix currency default value" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix currency default value" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
