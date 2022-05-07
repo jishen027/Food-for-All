@@ -62,6 +62,7 @@ public class ProjectServiceImpl implements ProjectService{
 
         Float prog = (current.floatValue()+amt)/goal.floatValue();
         update.setAchievedmeals(current+amt);
+        update.setCurrentRevenue((double) (update.getAchievedmeals()*update.getPrice()));
         update.setProgress(prog);
         return projectRepository.save(update);
     }
@@ -73,6 +74,7 @@ public class ProjectServiceImpl implements ProjectService{
         Integer goal = update.getTargetmeals();
         Float prog = (current.floatValue()+1)/goal.floatValue();
         update.setAchievedmeals(current+1);
+        update.setCurrentRevenue((double) (update.getAchievedmeals()*update.getPrice()));
         update.setProgress(prog);
         return projectRepository.getById(id);//projectRepository.save(update);
     }

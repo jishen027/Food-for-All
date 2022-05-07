@@ -19,7 +19,7 @@ CREATE TABLE projects
     lat             FLOAT,
     lng             FLOAT,
     price           FLOAT,
-    currency        VARCHAR(1) DEFAULT 'USD' NOT NULL,
+    currency        VARCHAR(10) DEFAULT 'USD' NOT NULL,
     user_id         BIGINT,
     CONSTRAINT pk_projects PRIMARY KEY (id)
 );
