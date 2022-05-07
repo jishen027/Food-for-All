@@ -111,21 +111,38 @@
     </style>
 </head>
 <body>
-<div class="row">
-    <div class="col-75">
-        <div class="container">
-            <form method="post"  action="/subscribe" modelAttribute="subscribe">
-                <div class="col-50">
-                    <h3>Payment</h3>
-                    <label for="frequency">Frequency of Donation</label>
-                    <input type="text" id="frequency" name="Frequency" value="Monthly">
+<section id="projects">
+    <div class="row">
+        <div class="col-75">
+            <div class="container" id="product">
+                <div>
+                    <h3>Details</h3>
+                    <p>Title: [[${pTitle}]]</p>
+                    <p>Description: [[${pDesc}]]</p>
+                    <p>Currency: [[${pCurr}]]</p>
+                    <p>Price: [[${pPrice}]]</p>
                 </div>
+                <form method="post"  action="/billing/subscribe" modelAttribute="subscribe">
+                    <div class="col-50">
+                        <input type="hidden" id="name" name="name" th:value="${pTitle}">
+                        <input type="hidden" id="description" name="description" th:value="${pDesc}">
+                        <input type="hidden" id="currency" name="currency" th:value="${pCurr}">
+                        <input type="hidden" id="price" name="price" th:value="${pPrice}">
+                        <input type="hidden" id="projectID" name="projectID" th:value="${pID}">
+                        <input type="hidden" id="productID" name="productID" th:value="${productID}">
+                        <h3>Payment</h3>
+                        <select name="frequency" id="frequency">
+                            <option value="Monthly" label="Donate Every Month"/>
+                            <option value="Quarterly" label="Donate Every 3 Months"/>
+                            <option value="Yearly" label="Donate Every Year"/>
+                        </select>
+                    </div>
 
-                <input type="submit" value="Continue to checkout" class="btn">
-            </form>
+                    <input type="submit" value="Finalise Payment" class="btn">
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+</section>
 </body>
 </html>

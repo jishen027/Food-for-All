@@ -23,22 +23,20 @@ public class CreatePayment {
     private APIContext apiContext;
 
     public Payment createPayment(
-            Integer projectID,
-            Integer total,
+            Integer total, String description, String currency, String price,
             String cancelUrl,
             String successUrl) throws PayPalRESTException{
-        /**Need to retrieve following information from database based on the project ID**/
-        String method = "Paypal";
-        String intent = "SALE";
-        String description = "Testing";
-        String currency = "GBP";
-        double price = 10;
+
+        //Constant variables
+        final String intent = "SALE";
+        final String method = "Paypal";
         double total_price;
 
         Amount amount = new Amount();
         amount.setCurrency(currency);
-        price = new BigDecimal(price).setScale(2, RoundingMode.HALF_UP).doubleValue();
-        total_price = total*price;
+        System.out.println(price);
+        double cost = new BigDecimal(Integer.parseInt(price)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        total_price = total*cost;
         amount.setTotal(String.format("%.2f", total_price));
 
         Transaction transaction = new Transaction();

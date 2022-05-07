@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-05 15:59:53
+ * @Last Modified time: 2022-05-07 15:29:21
  */
 
 var app = new Vue({
@@ -49,6 +49,7 @@ function RenderPieCharts(data) {
   var pieData = data
 
   option = {
+    animation:false,
     title: {
       text: 'Projects Income',
       subtext: 'Fake Data',
@@ -127,6 +128,7 @@ function RenderLineChart(x, y) {
   // var app = {};
   var option;
   option = {
+    animation:false,
     title: {
       text: 'Average Income'
     },
@@ -149,10 +151,24 @@ function RenderLineChart(x, y) {
   }
 }
 
+function printDiv(){
+  window.print()
+}
+
+const exportBtn = document.querySelector('#export')
+exportBtn.addEventListener('click', (e)=>{
+  e.preventDefault
+  printDiv('dashboard')
+})
+
+
 function init() {
   console.log(("dashBoard: ", dashboardData))
   DrawPieChart();
   DrawLineChart();
 }
 window.onload = init
+
+
+
 

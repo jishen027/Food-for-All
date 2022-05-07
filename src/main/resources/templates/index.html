@@ -23,57 +23,58 @@
 					</h1>
 				</div>
 
-				<div class="col-md-5 text-center d-none d-md-block">
-					<img class="img-fluid" src="/banner01.jpg" alt="banner">
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- pricing plans -->
-	<section id="pricing" class="bg-light">
-		<div class="container">
-			<div class="text-center">
-				<h2 class="my-2 py-5 text-success">Most popular projects</h2>
-				<p class="lead text-muted">If you want to see more you can <a href="/projects">go to all
-					projects...</a></p>
-			</div>
-			<div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
-				<div class="col" v-for="project in projects">
-					<div class="card h-100">
-						<img v-bind:src="project.img" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">{{project.title}}</h5>
-							<p class="card-text">{{project.content.slice(0,150)}}...</p>
-						</div>
-						<div class="card-footer bg-white border-0">
-							<div class="progress">
-								<div class="progress-bar" role="progressbar"
-								     v-bind:style="{width: project.progress + '%'}"
-								     v-bind:aria-valuenow="project.progress" aria-valuemin="0" aria-valuemax="100">
-									{{project.progress}}%
-								</div>
-							</div>
-							<p class="display-5 my-4 text-primary fw-bold">${{project.price}}/meal</p>
-							<div class="text-end">
-								<a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- insert footer from thymeleaf fragments -->
-	<div th:insert="~{fragments/footer :: footer}"></div>
-</div>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    // TODO: null excpetion when session is not set?
-    var session = /*[[${session}]]*/ 'default';
-    var projects = /*[[${projects}]]*/'default';
-    /*]]>*/
-</script>
-<script src="/javascript/index.js"></script>
+                    <div class="col-md-5 text-center d-none d-md-block">
+                        <img class="img-fluid" src="/banner01.jpg" alt="banner">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- pricing plans -->
+        <section id="pricing" class="bg-light">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="my-2 py-5 text-success">Most popular projects</h2>
+                    <p class="lead text-muted">If you want to see more you can <a href="/projects">go to all
+                            projects...</a></p>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
+                    <div class="col" v-for="project in projects">
+                        <div class="card h-100">
+                            <img v-bind:src="project.img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{project.title}}</h5>
+                                <p class="card-text">{{project.content.slice(0,150)}}...</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        v-bind:style="{width: project.progress + '%'}"
+                                        v-bind:aria-valuenow="project.progress" aria-valuemin="0" aria-valuemax="100">
+                                        {{project.progress}}%</div>
+                                </div>
+                                <p class="display-5 my-4 text-primary fw-bold">${{project.price}}/meal</p>
+                                <div class="text-end">
+                                    <a href="/detail" class="btn btn-primary stretched-link">Donate Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- insert footer from thymeleaf fragments -->
+        <div th:insert="~{fragments/footer :: footer}"></div>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var session = /*[[${session}]]*/ 'default';
+        var projects = /*[[${projects}]]*/'default';
+        console.log((projects))
+        /*]]>*/
+    </script>
+    <script src="/javascript/index.js"></script>
+    <script src="/javascript/money.js"></script>
+    <script src="/javascript/currencyEX.js"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-17 15:36:48 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-29 16:48:17
+ * @Last Modified time: 2022-05-07 17:15:48
  */
 console.log(session)
 
@@ -24,7 +24,7 @@ var app = new Vue({
                     charity: 'UK-Charity',
                     price: 8.99,
                 },
-                {
+                { 
                     id: 2,
                     title: 'Donate food for Asian',
                     content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea repellat aliquam minima iure quo sequi fuga ex assumenda maiores nemo illo dolor repudiandae alias unde saepe obcaecati possimus, nulla consequatur?',

@@ -1,17 +1,11 @@
 package com.team12.foodforall.paypal;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import com.paypal.api.payments.ChargeModels;
-import com.paypal.api.payments.Currency;
-import com.paypal.api.payments.MerchantPreferences;
-import com.paypal.api.payments.Patch;
-import com.paypal.api.payments.PaymentDefinition;
-import com.paypal.api.payments.Plan;
+
+import com.google.gson.JsonObject;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,125 +14,118 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreatePlan{
 
-    protected Plan instance = null;
-
     @Autowired
     private APIContext apiContext;
 
-    public Plan createPlan(
-            Integer projectID,
-            String frequency,
-            String cancelUrl,
-            String successUrl
-    ) throws PayPalRESTException, IOException {
+    public String desc;
+    public String freq;
+    public Integer interval;
 
-        String desc = "";
-        String freq = "";
-        String interval = "";
-        String name = "Project 1";
-        String curr = "GBP";
-        String price = "10";
+    // Private class making the request to paypal
+    private String getString(String productID, String name, String curr, String price, HttpURLConnection http) throws IOException {
+        CreateJson jsonGen = new CreateJson();
+        JsonObject objYear = jsonGen.makeJson(freq, interval, price, curr, name, desc, productID);
 
-        if(frequency=="Monthly"){
-            desc = "Monthly Donation";
-            freq = "MONTH";
-            interval = "1";
-        }else if(frequency=="Quarterly"){
-            desc = "Quarterly Donation";
-            freq = "MONTH";
-            interval = "3";
-        }else{
-            desc = "Yearly Donation";
-            freq = "YEAR";
-            interval = "1";
+        System.out.println(objYear);
+
+        byte[] out = objYear.toString().getBytes("utf-8");
+
+        OutputStream stream = http.getOutputStream();
+        stream.write(out);
+        int responseCode = http.getResponseCode();
+        InputStream inputStream;
+        if (200 <= responseCode && responseCode <= 299) {
+            inputStream = http.getInputStream();
+        } else {
+            inputStream = http.getErrorStream();
         }
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                        inputStream));
 
-        // Build Plan object
-        Plan plan = new Plan();
-        //plan.setName("Charity Plan 1");
-        plan.setName(name);
-        plan.setDescription(desc);
-        plan.setType("fixed");
+        StringBuilder response = new StringBuilder();
 
-        //payment_definitions
-        PaymentDefinition paymentDefinition = new PaymentDefinition();
-        //paymentDefinition.setName(paymentType);
-        paymentDefinition.setName("Regular Payments");
-        paymentDefinition.setType("REGULAR");
-        paymentDefinition.setFrequency(freq);
-        //paymentDefinition.setFrequency("MONTH");
-        paymentDefinition.setFrequencyInterval(interval);
-        //paymentDefinition.setFrequencyInterval("1");
-        paymentDefinition.setCycles("12");
+        response.append(in.readLine());
 
-        //currency
-        Currency currency = new Currency();
-        currency.setCurrency(curr);
-        //currency.setCurrency("USD");
-        currency.setValue(price);
-        //currency.setValue("20");
-        paymentDefinition.setAmount(currency);
+        System.out.println("Create Plan");
+        System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
+        http.disconnect();
+        in.close();
 
-        //charge_models
-        ChargeModels chargeModels = new com.paypal.api.payments.ChargeModels();
-        chargeModels.setType("SHIPPING");
-        chargeModels.setAmount(currency);
-        List<ChargeModels> chargeModelsList = new ArrayList<ChargeModels>();
-        chargeModelsList.add(chargeModels);
-        paymentDefinition.setChargeModels(chargeModelsList);
+        String planID = response.substring(response.indexOf("{\"id\":\"")+7, response.indexOf("\","));
+        System.out.println(planID);
 
-        //payment_definition
-        List<PaymentDefinition> paymentDefinitionList = new ArrayList<PaymentDefinition>();
-        paymentDefinitionList.add(paymentDefinition);
-        plan.setPaymentDefinitions(paymentDefinitionList);
-
-        //merchant_preferences
-        MerchantPreferences merchantPreferences = new MerchantPreferences();
-        merchantPreferences.setSetupFee(currency);
-        merchantPreferences.setCancelUrl(cancelUrl);
-        merchantPreferences.setReturnUrl(successUrl);
-        merchantPreferences.setMaxFailAttempts("0");
-        merchantPreferences.setAutoBillAmount("YES");
-        merchantPreferences.setInitialFailAmountAction("CONTINUE");
-        plan.setMerchantPreferences(merchantPreferences);
-
-        this.instance = plan.create(apiContext);
-        return this.instance;
+        return planID;
     }
 
-    /**
-     * Update a plan
-     *
-     * https://developer.paypal.com/webapps/developer/docs/api/#update-a-plan
-     *
-     * @return updated Plan instance
-     * @throws PayPalRESTException
-     */
-    public Plan update(APIContext context) throws PayPalRESTException, IOException {
+    //Makes the yearly billing plan
+    public String makePlan(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
+        /**Retrieve following from database**/
+        String name = String.format("Yearly %s", pName);
+        String pID = projectID.toString();
+        System.out.println(productID);
 
-        List<Patch> patchRequestList = new ArrayList<Patch>();
-        Map<String, String> value = new HashMap<String, String>();
-        value.put("state", "ACTIVE");
+        desc = "Yearly Donation";
+        freq = "YEAR";
+        interval = 1;
 
-        Patch patch = new Patch();
-        patch.setPath("/");
-        patch.setValue(value);
-        patch.setOp("replace");
-        patchRequestList.add(patch);
+        URL url = new URL("https://api-m.sandbox.paypal.com/v1/billing/plans");
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        http.setRequestProperty("Accept", "application/json");
+        http.setRequestProperty("Authorization", "Bearer {}".format(apiContext.fetchAccessToken()));
+        http.setRequestProperty("Content-Type", "application/json");
+        http.setRequestProperty("PayPal-Request-Id",  String.format("Yearly-%s", pID));
 
-        this.instance.update(context, patchRequestList);
-        return this.instance;
+        return getString(productID, name, curr, price.toString(), http);
+
     }
 
-    /**
-     * Retrieve a plan
-     *
-     * https://developer.paypal.com/webapps/developer/docs/api/#retrieve-a-plan
-     *
-     * @return the retrieved plan
-     * @throws PayPalRESTException
-     */
-    public Plan retrieve() throws PayPalRESTException {
-        return Plan.get(apiContext, this.instance.getId());
+    //Makes the monthly billing plan
+    public String makeMonthly(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
+        /**Retrieve following from database**/
+        String name = String.format("%s Monthly", pName);
+        String pID = projectID.toString();
+        System.out.println(productID);
+        desc = "Monthly Donation";
+        freq = "MONTH";
+        interval = 1;
+
+        URL url = new URL("https://api-m.sandbox.paypal.com/v1/billing/plans");
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        http.setRequestProperty("Accept", "application/json");
+        http.setRequestProperty("Authorization", "Bearer {}".format(apiContext.fetchAccessToken()));
+        http.setRequestProperty("Content-Type", "application/json");
+        http.setRequestProperty("PayPal-Request-Id",  String.format("Monthly-%s", pID));
+
+        return getString(productID, name, curr, price.toString(), http);
+
     }
+
+    //Makes the quarterly billing plan
+    public String makeQuarterly(Long projectID, String productID, String curr, Float price, String pName) throws IOException, PayPalRESTException {
+        /**Retrieve following from database**/
+        String name = String.format("%s Quarterly", pName);
+        String pID = projectID.toString();
+        System.out.println(productID);
+        desc = "Quarterly Donation";
+        freq = "MONTH";
+        interval = 3;
+
+        URL url = new URL("https://api-m.sandbox.paypal.com/v1/billing/plans");
+        HttpURLConnection http = (HttpURLConnection)url.openConnection();
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        http.setRequestProperty("Accept", "application/json");
+        http.setRequestProperty("Authorization", "Bearer {}".format(apiContext.fetchAccessToken()));
+        http.setRequestProperty("Content-Type", "application/json");
+        http.setRequestProperty("PayPal-Request-Id", String.format("Quarterly-%s", pID));
+
+        return getString(productID, name, curr, price.toString(), http);
+
+    }
+
 }
