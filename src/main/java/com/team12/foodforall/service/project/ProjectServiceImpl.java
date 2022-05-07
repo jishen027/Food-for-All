@@ -36,6 +36,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
+<<<<<<< HEAD
     public int countProjects() {
         return projectRepository.findAll().size();
     }
@@ -55,4 +56,27 @@ public class ProjectServiceImpl implements ProjectService{
         return projectRepository.findAll();
     }
 
+=======
+    public Project updateProjectProgress(Long id, Integer amt){
+        Project update = projectRepository.findById(id).get();
+        Integer current = update.getAchievedmeals();
+        Integer goal = update.getTargetmeals();
+
+        Float prog = (current.floatValue()+amt)/goal.floatValue();
+        update.setAchievedmeals(current+amt);
+        update.setProgress(prog);
+        return projectRepository.save(update);
+    }
+
+    @Override
+    public Project updateProjectProgressSub(Long id){
+        Project update = projectRepository.findById(id).get();
+        Integer current = update.getAchievedmeals();
+        Integer goal = update.getTargetmeals();
+        Float prog = (current.floatValue()+1)/goal.floatValue();
+        update.setAchievedmeals(current+1);
+        update.setProgress(prog);
+        return projectRepository.getById(id);//projectRepository.save(update);
+    }
+>>>>>>> donation
 }
