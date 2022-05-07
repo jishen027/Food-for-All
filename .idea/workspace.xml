@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest">
+    <list default="true" id="32cfa412-eccb-4754-9fa4-2ae604f6e516" name="Changes" comment="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/controller/project/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team12/foodforall/domain/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/javascript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -86,7 +87,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/templates" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProjectRepoTest.TestFindAll">
+  <component name="RunManager" selected="Spring Boot.FoodForAllApplication">
     <configuration name="ProjectRepoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="foodForAll" />
       <extension name="coverage">
@@ -118,6 +119,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserRepositoryTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="foodForAll" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.team12.foodforall.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.team12.foodforall" />
+      <option name="MAIN_CLASS_NAME" value="com.team12.foodforall.UserRepositoryTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,14 +155,16 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.FoodForAllApplication" />
       <item itemvalue="JUnit.ProjectRepoTest.TestFindAll" />
       <item itemvalue="JUnit.ProjectRepoTest" />
+      <item itemvalue="Spring Boot.FoodForAllApplication" />
+      <item itemvalue="JUnit.UserRepositoryTests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ProjectRepoTest.TestFindAll" />
         <item itemvalue="JUnit.ProjectRepoTest" />
+        <item itemvalue="JUnit.UserRepositoryTests" />
       </list>
     </recent_temporary>
   </component>
@@ -222,9 +240,19 @@
     <MESSAGE value="[fix] minor fix" />
     <MESSAGE value="[add] add project edit and delete&#10;&#10;-edit is using post method in controller&#10;&#10;-delete is now working, need to set spring.mvc.hiddenmethod.filter.enabled=true in application.properties.&#10;see https://linuxtut.com/en/b8b9965fddf9c5507517/" />
     <MESSAGE value="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix default value inserted to db, updateProjectRepoTest to generate test dada&#10;&#10;@dynamicInsert is enabled&#10;&#10;Test data can be used in updateProjectRepoTest" />
+    <MESSAGE value="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix test ProjectController &#10;&#10;password was not  encrypted in this test" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/team12/foodforall/ProjectRepoTest.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.springframework.validation.BeanPropertyBindingResult" memberName="objectName" />

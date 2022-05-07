@@ -53,7 +53,7 @@ public class ProjectController {
         // retrie ve all data from
         ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
 
-        System.out.println("hello");
+        
         model.addAttribute("projects", projects);
         return "projects";
     }

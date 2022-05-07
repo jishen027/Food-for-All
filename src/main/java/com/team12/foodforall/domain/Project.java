@@ -60,6 +60,7 @@ public class Project {
     @NotNull(message = "price is necessary")
     Float price; //'8.99',
 
+    @Column(nullable = false, columnDefinition = "VARCHAR(1) default '£'") // default value = 0 only no validation any number value will be set to
     String currency; //"$"
 
     @ManyToOne
