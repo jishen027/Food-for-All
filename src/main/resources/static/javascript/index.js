@@ -24,7 +24,7 @@ var app = new Vue({
                     charity: 'UK-Charity',
                     price: 8.99,
                 },
-                {
+                { 
                     id: 2,
                     title: 'Donate food for Asian',
                     content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea repellat aliquam minima iure quo sequi fuga ex assumenda maiores nemo illo dolor repudiandae alias unde saepe obcaecati possimus, nulla consequatur?',
