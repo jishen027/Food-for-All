@@ -36,7 +36,6 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-<<<<<<< HEAD
     public int countProjects() {
         return projectRepository.findAll().size();
     }
@@ -56,7 +55,6 @@ public class ProjectServiceImpl implements ProjectService{
         return projectRepository.findAll();
     }
 
-=======
     public Project updateProjectProgress(Long id, Integer amt){
         Project update = projectRepository.findById(id).get();
         Integer current = update.getAchievedmeals();
@@ -78,5 +76,4 @@ public class ProjectServiceImpl implements ProjectService{
         update.setProgress(prog);
         return projectRepository.getById(id);//projectRepository.save(update);
     }
->>>>>>> donation
 }

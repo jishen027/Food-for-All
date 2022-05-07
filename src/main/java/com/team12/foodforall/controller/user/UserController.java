@@ -23,7 +23,6 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-<<<<<<< HEAD
 	@Autowired
 	private UserService userService;
 
@@ -97,59 +96,4 @@ public class UserController {
 		return "redirect:/login?registerSuccess";
 	}
 
-=======
-    @Autowired
-    private UserService userService;
-
-
-    @GetMapping("/login")
-    public String showLoginForm(LoginForm loginForm, HttpSession session, Model model, String loginError, String logout) {
-        if (loginError != null) {
-            model.addAttribute("errorMsg", "Your username and password are invalid.");
-        }
-        if (logout != null){
-            model.addAttribute("msg", "You have been logged out successfully.");
-        }
-
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String showRegisterForm(RegisterForm registerForm) {
-        return "register";
-    }
-
-
-    /**
-     * Returns the target page in string form based on the registration result.
-     * <p>
-     * This method will validate and register the given user.
-     * Password will be encrypted.
-     * @param  registerForm  user input form, consist of all information.
-     * @param  result result can be used to store errors, which will be further
-     *                used by thymeleaf to control DOM visibility
-     * @param  model the model is basically the page, you can add attributes(simply key/value pairs)
-     *               which can be accessed by thymeleaf templates.
-     * @return      a string of page name which can be found insequence
-     *              under /resources, /resources/template, /resources/static /resources/public.
-     */
-    @PostMapping("/register")
-    public String addUser(@Valid RegisterForm registerForm, BindingResult result, Model model) {
-
-        // handle error actively here
-        if (result.hasErrors()) {
-            //TODO: replace by throw exception if needed
-            return "register";
-        }
-
-        User user = userService.registerUser(registerForm);
-
-        if(user == null){ //failed
-            throw new RuntimeException();
-        }
-
-        // if success
-        return "redirect:/login";
-    }
->>>>>>> donation
 }

@@ -25,4 +25,7 @@ public interface ProjectService {
     int countCompletedProjectNumber();
 
     List<Project> getToalRevenueForAllProjects();
+    Project updateProjectProgress(Long id, Integer amt);
+
+    Project updateProjectProgressSub(Long id);
 }
