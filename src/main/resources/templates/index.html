@@ -41,7 +41,7 @@
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
                     <div class="col" v-for="project in projects">
                         <div class="card h-100">
-                            <img v-bind:src="project.img" class="card-img-top" alt="...">
+                            <img :src="'data:image/*;base64,' + project.img" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{project.title}}</h5>
                                 <p class="card-text">{{project.content.slice(0,150)}}...</p>

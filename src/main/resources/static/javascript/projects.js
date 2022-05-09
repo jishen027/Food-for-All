@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:32:20 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-07 17:16:26
+ * @Last Modified time: 2022-05-09 17:43:18
  */
 
 console.log(session)
@@ -12,7 +12,7 @@ var app = new Vue({
     data() {
         return {
             title: 'Food For All',
-            loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated,
+            loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated? true:false,
             term: '',
             projects: projects,
             filteredProjects: projects,
