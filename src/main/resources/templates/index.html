@@ -71,7 +71,12 @@
         /*<![CDATA[*/
         var session = /*[[${session}]]*/ 'default';
         var projects = /*[[${projects}]]*/'default';
-        console.log((projects))
+        var loginState = ""
+        if(session){
+            loginState = session.SPRING_SECURITY_CONTEXT.authentication.authenticated
+        }else{
+            loginState = false
+        }
         /*]]>*/
     </script>
     <script src="/javascript/index.js"></script>

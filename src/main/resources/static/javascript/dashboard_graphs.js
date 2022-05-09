@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-07 15:29:21
+ * @Last Modified time: 2022-05-10 00:24:23
  */
 
 var app = new Vue({
@@ -10,7 +10,8 @@ var app = new Vue({
   data() {
     return {
       title: 'Food For All',
-      loginState: true,
+      loginState: loginState,
+      charityName: charityName,
       tagActives: {
         projects: false,
         graphs: true,
@@ -25,7 +26,6 @@ var app = new Vue({
   methods: {
   }
 })
-
 
 function ProcessPieChartData(dashboardData) {
   var projects = dashboardData.revenueList
@@ -130,7 +130,7 @@ function RenderLineChart(x, y) {
   option = {
     animation:false,
     title: {
-      text: 'Average Income'
+      text: 'Projects Income'
     },
     xAxis: {
       type: 'category',

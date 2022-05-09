@@ -11,7 +11,7 @@ var app = new Vue({
     data() {
         return {
             title: 'Food For All',
-            loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated,
+            loginState: loginState,
             tagActives: {
                 projects: false,
                 graphs: true,

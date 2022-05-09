@@ -2,17 +2,17 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:32:20 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-09 17:43:18
+ * @Last Modified time: 2022-05-10 00:07:27
  */
 
-console.log(session)
+
 
 var app = new Vue({
     el: '#app',
     data() {
         return {
             title: 'Food For All',
-            loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated? true:false,
+            loginState: loginState,
             term: '',
             projects: projects,
             filteredProjects: projects,

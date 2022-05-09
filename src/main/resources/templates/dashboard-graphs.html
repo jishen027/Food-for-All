@@ -19,7 +19,7 @@
                         <div class="row">
                             <div
                                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                                <h1 class="h2">Charity Name</h1>
+                                <h1 class="h2">{{charityName}}</h1>
                                 <div class="btn-toolbar mb-2 mb-md-0">
                                     <button id="export" type="button"
                                         class="btn btn-sm btn-outline-secondary">Export</button>
@@ -72,6 +72,16 @@
         /*<![CDATA[*/
         var session = /*[[${session}]]*/ 'default';
         var dashboardData = /*[[${dashboardData}]]*/'default';
+        console.log("session: ", session)
+        var loginState = ""
+        var charityName = ""
+        if(session){
+            loginState = session.SPRING_SECURITY_CONTEXT.authentication.authenticated
+            charityName = session.SPRING_SECURITY_CONTEXT.authentication.name
+            console.log("charityName: ", charityName)
+        }else{
+            loginState = false
+        }
         /*]]>*/
     </script>
     <script src="/javascript/dashboard_graphs.js"></script>
