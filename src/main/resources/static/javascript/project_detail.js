@@ -2,8 +2,9 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:28:28 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-07 17:16:02
+ * @Last Modified time: 2022-05-09 16:11:43
  */
+
 var app = new Vue({
     el: '#app',
     data() {
@@ -14,5 +15,5 @@ var app = new Vue({
         }
     },
     methods: {}
-})
+});
 

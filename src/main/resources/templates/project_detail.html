@@ -11,7 +11,7 @@
 
     <!-- insert navbar from thymeleaf nav fragment -->
     <div th:insert="~{fragments/navbar :: nav}"></div>
-    
+
     <div class="container">
       <div class="text-center mt-5">
         <h2 class="my-2 py-5 text-success">{{project.title}}</h2>
@@ -37,8 +37,9 @@
                   <li class="list-group-item">
                     Progress:
                     <div class="progress mt-1">
-                      <div class="progress-bar" role="progressbar" v-bind:style="{width: project.progress + '%'}" v-bind:aria-valuenow="project.progress"
-                        aria-valuemin="0" aria-valuemax="100">{{project.progress}}%</div>
+                      <div class="progress-bar" role="progressbar" v-bind:style="{width: project.progress + '%'}"
+                        v-bind:aria-valuenow="project.progress" aria-valuemin="0" aria-valuemax="100">
+                        {{project.progress}}%</div>
                     </div>
                   </li>
                   <li class="list-group-item">
@@ -46,7 +47,7 @@
                   </li>
                   <li class="list-group-item">
                     <p>price: <small class="display-6 text-primary fw-bold" id="price">{{project.price}}</small>
-                    <small class="display-6 text-primary fw-bold">/meal</small>
+                      <small class="display-6 text-primary fw-bold">/meal</small>
                     </p>
                     <p hidden id="currency">{{project.currency}}</p>
                   </li>
@@ -54,9 +55,10 @@
               </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
-              <a th:href="@{'/projects/update/' + ${project.id}}" class="btn btn-warning w-20">Edit Project</a>
-              <form th:action="@{'/projects/' + ${project.id}}" th:method="delete" >
-                <input type="submit" value="delete" class="btn btn-danger w-20"/>
+              <a v-if="loginState" th:href="@{'/projects/update/' + ${project.id}}" class="btn btn-warning w-20">Edit
+                Project</a>
+              <form v-if="loginState" th:action="@{'/projects/' + ${project.id}}" th:method="delete">
+                <input type="submit" value="delete" class="btn btn-danger w-20" />
               </form>
               <a th:href="@{/donate/(id=${project.id})}" class="btn btn-success w-20">Donate Now</a>
               <a th:href="@{/billing/(id=${project.id})}" class="btn btn-success w-20">Subscribe</a>
@@ -81,9 +83,9 @@
     // TODO: null excpetion when session is not set?
     var session = /*[[${session}]]*/ 'default';
     var project = /*[[${project}]]*/'default';
-    console.log(project)
+    console.log("project: ", project)
     /*]]>*/
-</script>
+  </script>
   <script src="/javascript/money.js"></script>
   <script src="/javascript/currencyEX.js"></script>
   <script src="/javascript/project_detail.js"></script>
