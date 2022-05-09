@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-20 21:28:28 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-09 16:11:43
+ * @Last Modified time: 2022-05-09 16:46:29
  */
 
 var app = new Vue({
@@ -14,6 +14,11 @@ var app = new Vue({
             project: project
         }
     },
-    methods: {}
+    methods: {
+        shareLink(id){
+            const link = "https://api.whatsapp.com/send?text=http%3A%2F%2Flocalhost%3A8000%2Fprojects%2F"+id
+            window.location.href = link
+        },
+    }
 });
 
