@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-05-10 00:24:23
+ * @Last Modified time: 2022-05-10 01:25:24
  */
 
 var app = new Vue({
@@ -51,7 +51,7 @@ function RenderPieCharts(data) {
   option = {
     animation:false,
     title: {
-      text: 'Projects Income',
+      text: 'Income Rates',
       subtext: 'Fake Data',
       left: 'center'
     },
