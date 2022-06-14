@@ -1,12 +1,23 @@
 package com.team12.foodforall.controller.project;
 
 import com.team12.foodforall.domain.Project;
+import com.team12.foodforall.domain.User;
+import com.team12.foodforall.repository.ProjectRepository;
+import com.team12.foodforall.service.project.ProjectService;
+import com.team12.foodforall.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * @author: Heng Gao
@@ -15,53 +26,101 @@ import java.util.ArrayList;
 @Controller
 public class ProjectController {
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    ProjectRepository projectRepo;
+
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
 
-        session.setAttribute("loginStatus","true");
-        session.setAttribute("userName","gh");
-        session.setAttribute("userId",101);
-        session.setAttribute("userRole","admin");
+        ArrayList<Project> projectList = (ArrayList<Project>) projectRepo.findAll();
 
 
-        Project p1 = new Project();
-        p1.setId(101L);
-        p1.setTitle("P1 title1");
+        model.addAttribute("projects", projectList);
 
-        Project p2 = new Project();
-        p2.setId(102L);
-        p2.setTitle("P2 title2");
-
-
-        ArrayList<Project> projectList = new ArrayList<Project>();
-        projectList.add(p1);
-        projectList.add(p2);
-
-        model.addAttribute("projects",projectList);
         // the string tell which page to go, by deafult its under /resource and /resource/template and /resource/public and /rouserce/static
         return "index";
     }
 
     // router for return the projects views
-    @RequestMapping("/projects")
-    public String projects(){
+    @GetMapping("/projects")
+    public String projects(Model model){
+        // retrie ve all data from
+        ArrayList<Project> projects = (ArrayList<Project>) projectRepo.findAll();
+
+        
+        model.addAttribute("projects", projects);
         return "projects";
     }
 
-    @RequestMapping("/dashboard-graphs")
-    public String dashboardGraphs(){
-        return "dashboard-graphs";
+
+
+    @GetMapping("/projects/add")
+    public String getAddProjectPage(Project project, Model model){
+        return "addProject";
     }
 
 
-    @RequestMapping("/dashboard-projects")
-    public String dashboardProjects(){
-        return "dashboard-projects";
+    // router for return the projects views
+    @PostMapping("/projects")
+    public String saveProject(Model model, @Valid Project project,
+                              BindingResult error, @RequestParam("img") MultipartFile file) throws IOException {
+
+//      TODO :  Service.();
+
+//        StringUtils.cleanPath()
+
+        String img = Base64.getEncoder().encodeToString(file.getBytes());
+        project.setImg(img); // img in String
+
+        // V2 retrieve all data from
+        User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        project.setUser(user);
+        Project savedProject = projectService.addProject(project);
+
+        System.out.println(savedProject);
+        System.out.println(project);
+        System.out.println("saving project");
+        return "redirect:/projects";
     }
 
-    @RequestMapping("/detail")
-    public String projectDetail(){
+
+    //Get a project detail
+    @GetMapping("/projects/{id}")
+    public String projectDetail(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
         return "project_detail";
     }
 
+    //Delete a project detail
+    @DeleteMapping("/projects/{id}")
+    public String deleteDetail(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
+        projectRepo.delete(project);
+
+        return "redirect:/projects";
+    }
+
+    //Update a project detail
+    @GetMapping("/projects/update/{id}")
+    public String updateProject(@PathVariable("id") Long id, Model model){
+        Project project = projectService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid project Id:" + id));
+
+        model.addAttribute("project", project);
+        return "editProject";
+    }
 }
+
+

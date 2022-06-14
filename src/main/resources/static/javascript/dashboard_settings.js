@@ -6,19 +6,18 @@
  */
 
 var app = new Vue({
-  el: '#app',
-  data() {
-    return {
-      title: 'Food For All',
-      loginState: true,
-      tagActives: {
-        projects: false,
-        graphs: false,
-        settings: true,
-        profiles: false,
-      }
-    }
-  },
-  methods: {
-  }
+    el: '#app',
+    data() {
+        return {
+            title: 'Food For All',
+            loginState: session.SPRING_SECURITY_CONTEXT.authentication.authenticated,
+            tagActives: {
+                projects: false,
+                graphs: false,
+                settings: true,
+                profiles: false,
+            }
+        }
+    },
+    methods: {}
 })

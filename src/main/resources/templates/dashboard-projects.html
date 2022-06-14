@@ -50,5 +50,12 @@
     </div>
     <script src="/javascript/dashboard_projects.js"></script>
 </body>
-
+<!--加载session数据-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var session = /*[[${session}]]*/ 'default';
+    var projects = /*[[${projects}]]*/'default';
+    console.log((projects))
+    /*]]>*/
+</script>
 </html>

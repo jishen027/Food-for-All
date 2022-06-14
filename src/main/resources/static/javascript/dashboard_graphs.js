@@ -2,7 +2,7 @@
  * @Author: Jipu Li 
  * @Date: 2022-03-28 17:56:01 
  * @Last Modified by: Jipu Li
- * @Last Modified time: 2022-03-31 12:51:12
+ * @Last Modified time: 2022-05-10 01:25:24
  */
 
 var app = new Vue({
@@ -10,84 +10,165 @@ var app = new Vue({
   data() {
     return {
       title: 'Food For All',
-      loginState: true,
+      loginState: loginState,
+      charityName: charityName,
       tagActives: {
         projects: false,
         graphs: true,
         settings: false,
         profiles: false,
-      }
+      },
+      totlaProjects: dashboardData.numOfProjects,
+      completedProjects: dashboardData.numOfCompletedProjects,
+      totalRevenue: dashboardData.totalRevenue,
     }
   },
   methods: {
   }
 })
 
-// graph settings
-var lineDom = document.getElementById("lineChart");
-var myLineChart = echarts.init(lineDom);
-var app = {};
-var option;
-option = {
-  title: {
-    text: 'Stacked Line'
-  },
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [150, 230, 224, 218, 135, 147, 260],
-      type: 'line'
-    }
-  ]
-};
-if (option && typeof option === 'object') {
-  myLineChart.setOption(option);
+function ProcessPieChartData(dashboardData) {
+  var projects = dashboardData.revenueList
+  var dataList = []
+  projects.forEach(project => {
+    var data = { value: project.currentRevenue, name: project.title }
+    dataList.push(data);
+  });
+
+  return dataList
 }
 
-// pie chart
-var pieDom = document.getElementById("pieChart");
-var myPieChart = echarts.init(pieDom);
-var app = {};
-var option;
+function RenderPieCharts(data) {
+  console.log("Pie", data)
+  // pie chart
+  var pieDom = document.getElementById("pieChart");
+  var myPieChart = echarts.init(pieDom);
+  // var app = {};
+  var option;
 
-option = {
-  title: {
-    text: 'Referer of a Website',
-    subtext: 'Fake Data',
-    left: 'center'
-  },
-  tooltip: {
-    trigger: 'item'
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: '50%',
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
+  var pieData = data
+
+  option = {
+    animation:false,
+    title: {
+      text: 'Income Rates',
+      subtext: 'Fake Data',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item'
+    },
+    series: [
+      {
+        name: 'income calculate by dollar',
+        type: 'pie',
+        radius: '50%',
+        data: pieData,
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          }
         }
       }
-    }
-  ]
-};
+    ]
+  };
 
-if (option && typeof option === 'object') {
-  myPieChart.setOption(option);
+  if (option && typeof option === 'object') {
+    myPieChart.setOption(option);
+  }
 }
+
+async function DrawPieChart() {
+  var data = await ProcessPieChartData(dashboardData)
+  await RenderPieCharts(data)
+  var lineData = await ProcessPieChartData(dashboardData)
+  linexAxis = []
+  lineyAxis = []
+
+  lineData.forEach(data => {
+    linexAxis.push(data.name)
+    lineyAxis.push(data.value)
+  });
+
+  await RenderLineChart(linexAxis, lineyAxis)
+
+}
+
+async function DrawLineChart() {
+  var lineData = await ProcessPieChartData(dashboardData)
+  linexAxis = []
+  lineyAxis = []
+
+  lineData.forEach(data => {
+    linexAxis.push(data.name)
+    lineyAxis.push(data.value)
+  });
+
+  await RenderLineChart(linexAxis, lineyAxis)
+}
+
+function ProcessLineChartData() {
+
+  var lineData = []
+
+  return lineData;
+}
+
+
+
+function RenderLineChart(x, y) {
+  // graph settings
+  var lineDom = document.getElementById("lineChart");
+  var myLineChart = echarts.init(lineDom);
+  var XAxis = x
+  var YAxis = y
+
+  // var app = {};
+  var option;
+  option = {
+    animation:false,
+    title: {
+      text: 'Projects Income'
+    },
+    xAxis: {
+      type: 'category',
+      data: XAxis
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: YAxis,
+        type: 'line'
+      }
+    ]
+  };
+  if (option && typeof option === 'object') {
+    myLineChart.setOption(option);
+  }
+}
+
+function printDiv(){
+  window.print()
+}
+
+const exportBtn = document.querySelector('#export')
+exportBtn.addEventListener('click', (e)=>{
+  e.preventDefault
+  printDiv('dashboard')
+})
+
+
+function init() {
+  console.log(("dashBoard: ", dashboardData))
+  DrawPieChart();
+  DrawLineChart();
+}
+window.onload = init
+
+
+
+
