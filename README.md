@@ -31,7 +31,26 @@ Spring Boot + thymeleaf + Bootstrap
 5. Rest api
 
 ### Application Screenshots
+1. index page
 
+![index](https://raw.githubusercontent.com/jishen027/food-for-all/main/ScreenShots/indexpage.png?token=GHSAT0AAAAAABUX557EWRU27OISBK3HFFJKYVI4HEQ)
+
+
+2. project list page
+
+![projectList](https://raw.githubusercontent.com/jishen027/food-for-all/main/ScreenShots/projectList.png?token=GHSAT0AAAAAABUX557EO2PMSAWMYTWBUGNGYVI4HZQ)
+
+3. project details
+
+![projectDetails](https://raw.githubusercontent.com/jishen027/food-for-all/main/ScreenShots/projectView.png?token=GHSAT0AAAAAABUX557FY5XTBTNLCRHVNUICYVI4ITQ)
+
+4. dashboard project management 
+
+![dashboardProjManagement](https://raw.githubusercontent.com/jishen027/food-for-all/main/ScreenShots/dashboardProjectManagement.png?token=GHSAT0AAAAAABUX557F5PJ6WNEJYX7AJXMSYVI4JKQ)
+
+5. dashboard graphs
+
+![dashboardGraphs](https://raw.githubusercontent.com/jishen027/food-for-all/main/ScreenShots/dashboradGraphs.png?token=GHSAT0AAAAAABUX557E5XMRMICVIGIWG7KIYVI4JZQ)
 
 
 ### My results from Peer Reviews doc
